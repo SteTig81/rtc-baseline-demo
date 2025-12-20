@@ -1,0 +1,56 @@
+{
+  "baselines": [
+    {
+      "id": "bl1",
+      "name": "1.0.0"
+    },
+    {
+      "id": "bl1r",
+      "name": "1.0.0-rerelease"
+    },
+    {
+      "id": "bl2",
+      "name": "1.1.0"
+    },
+    {
+      "id": "bl3a",
+      "name": "1.1.1-hotfix-A"
+    },
+    {
+      "id": "bl3b",
+      "name": "1.1.1-hotfix-B"
+    },
+    {
+      "id": "bl4",
+      "name": "2.0.0"
+    },
+    {
+      "id": "bl5x",
+      "name": "2.1.0-feature-X"
+    },
+    {
+      "id": "bl5y",
+      "name": "2.1.0-feature-Y"
+    },
+    {
+      "id": "bl6",
+      "name": "2.2.0-merge"
+    },
+    {
+      "id": "bl7",
+      "name": "2.2.0-rebaseline"
+    },
+    {
+      "id": "bl8a",
+      "name": "2.3.0-hotfix-A"
+    },
+    {
+      "id": "bl8b",
+      "name": "2.3.0-hotfix-B"
+    },
+    {
+      "id": "bl9",
+      "name": "2.4.0-final-merge"
+    }
+  ]
+}

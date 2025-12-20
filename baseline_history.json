@@ -1,0 +1,637 @@
+{
+  "nodes": [
+    {
+      "id": "cfg_47bb0d91df12",
+      "bl_count": 2,
+      "cs_count": 2,
+      "baselines": [
+        {
+          "id": "bl1",
+          "name": "1.0.0",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "init"
+            },
+            {
+              "id": "cs2",
+              "name": "core"
+            }
+          ]
+        },
+        {
+          "id": "bl1r",
+          "name": "1.0.0-rerelease",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "init"
+        },
+        {
+          "id": "cs2",
+          "name": "core"
+        }
+      ],
+      "predecessors": [],
+      "mainline": true
+    },
+    {
+      "id": "cfg_dc052385ebda",
+      "bl_count": 1,
+      "cs_count": 3,
+      "baselines": [
+        {
+          "id": "bl2",
+          "name": "1.1.0",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        }
+      ],
+      "predecessors": [
+        "cfg_47bb0d91df12"
+      ],
+      "mainline": true
+    },
+    {
+      "id": "cfg_bae5c12a29cf",
+      "bl_count": 2,
+      "cs_count": 3,
+      "baselines": [
+        {
+          "id": "bl3a",
+          "name": "1.1.1-hotfix-A",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            }
+          ]
+        },
+        {
+          "id": "bl3b",
+          "name": "1.1.1-hotfix-B",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        }
+      ],
+      "predecessors": [
+        "cfg_47bb0d91df12"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_36eec27edbea",
+      "bl_count": 1,
+      "cs_count": 4,
+      "baselines": [
+        {
+          "id": "bl4",
+          "name": "2.0.0",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        }
+      ],
+      "predecessors": [
+        "cfg_dc052385ebda"
+      ],
+      "mainline": true
+    },
+    {
+      "id": "cfg_e0bca7849527",
+      "bl_count": 3,
+      "cs_count": 5,
+      "baselines": [
+        {
+          "id": "bl5x",
+          "name": "2.1.0-feature-X",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            }
+          ]
+        },
+        {
+          "id": "bl6",
+          "name": "2.2.0-merge",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            }
+          ]
+        },
+        {
+          "id": "bl7",
+          "name": "2.2.0-rebaseline",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        }
+      ],
+      "predecessors": [
+        "cfg_36eec27edbea"
+      ],
+      "mainline": true
+    },
+    {
+      "id": "cfg_a3d8596513e2",
+      "bl_count": 1,
+      "cs_count": 5,
+      "baselines": [
+        {
+          "id": "bl5y",
+          "name": "2.1.0-feature-Y",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs7",
+              "name": "cs7"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs7",
+          "name": "cs7"
+        }
+      ],
+      "predecessors": [
+        "cfg_36eec27edbea"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_5808995ddcf8",
+      "bl_count": 1,
+      "cs_count": 6,
+      "baselines": [
+        {
+          "id": "bl8a",
+          "name": "2.3.0-hotfix-A",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            },
+            {
+              "id": "cs8",
+              "name": "cs8"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        },
+        {
+          "id": "cs8",
+          "name": "cs8"
+        }
+      ],
+      "predecessors": [
+        "cfg_e0bca7849527"
+      ],
+      "mainline": true
+    },
+    {
+      "id": "cfg_9bea1eed6b6d",
+      "bl_count": 1,
+      "cs_count": 6,
+      "baselines": [
+        {
+          "id": "bl8b",
+          "name": "2.3.0-hotfix-B",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            },
+            {
+              "id": "cs9",
+              "name": "cs9"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        },
+        {
+          "id": "cs9",
+          "name": "cs9"
+        }
+      ],
+      "predecessors": [
+        "cfg_e0bca7849527"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_69472b67c557",
+      "bl_count": 1,
+      "cs_count": 8,
+      "baselines": [
+        {
+          "id": "bl9",
+          "name": "2.4.0-final-merge",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            },
+            {
+              "id": "cs8",
+              "name": "cs8"
+            },
+            {
+              "id": "cs9",
+              "name": "cs9"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        },
+        {
+          "id": "cs8",
+          "name": "cs8"
+        },
+        {
+          "id": "cs9",
+          "name": "cs9"
+        }
+      ],
+      "predecessors": [
+        "cfg_5808995ddcf8",
+        "cfg_9bea1eed6b6d",
+        "cfg_bae5c12a29cf"
+      ],
+      "mainline": true
+    }
+  ],
+  "links": [
+    {
+      "source": "cfg_47bb0d91df12",
+      "target": "cfg_bae5c12a29cf"
+    },
+    {
+      "source": "cfg_47bb0d91df12",
+      "target": "cfg_dc052385ebda"
+    },
+    {
+      "source": "cfg_dc052385ebda",
+      "target": "cfg_36eec27edbea"
+    },
+    {
+      "source": "cfg_bae5c12a29cf",
+      "target": "cfg_69472b67c557"
+    },
+    {
+      "source": "cfg_36eec27edbea",
+      "target": "cfg_a3d8596513e2"
+    },
+    {
+      "source": "cfg_36eec27edbea",
+      "target": "cfg_e0bca7849527"
+    },
+    {
+      "source": "cfg_e0bca7849527",
+      "target": "cfg_5808995ddcf8"
+    },
+    {
+      "source": "cfg_e0bca7849527",
+      "target": "cfg_9bea1eed6b6d"
+    },
+    {
+      "source": "cfg_5808995ddcf8",
+      "target": "cfg_69472b67c557"
+    },
+    {
+      "source": "cfg_9bea1eed6b6d",
+      "target": "cfg_69472b67c557"
+    }
+  ]
+}
