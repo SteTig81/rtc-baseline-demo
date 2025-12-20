@@ -1,6 +1,0 @@
-{
-  "changeSets": [
-    { "id": "cs1", "name": "init" },
-    { "id": "cs2", "name": "core" }
-  ]
-}

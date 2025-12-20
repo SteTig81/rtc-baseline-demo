@@ -1,24 +1,25 @@
 {
   "nodes": [
     {
-      "id": "cfg_47bb0d91df12",
-      "bl_count": 2,
-      "cs_count": 2,
+      "id": "cfg_da39a3ee5e6b",
+      "bl_count": 1,
+      "cs_count": 0,
       "baselines": [
         {
           "id": "bl1",
           "name": "1.0.0",
-          "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "init"
-            },
-            {
-              "id": "cs2",
-              "name": "core"
-            }
-          ]
-        },
+          "changesets_json": []
+        }
+      ],
+      "changesets": [],
+      "predecessors": [],
+      "mainline": true
+    },
+    {
+      "id": "cfg_47bb0d91df12",
+      "bl_count": 1,
+      "cs_count": 2,
+      "baselines": [
         {
           "id": "bl1r",
           "name": "1.0.0-rerelease",
@@ -37,15 +38,17 @@
       "changesets": [
         {
           "id": "cs1",
-          "name": "init"
+          "name": "cs1"
         },
         {
           "id": "cs2",
-          "name": "core"
+          "name": "cs2"
         }
       ],
-      "predecessors": [],
-      "mainline": true
+      "predecessors": [
+        "cfg_da39a3ee5e6b"
+      ],
+      "mainline": false
     },
     {
       "id": "cfg_dc052385ebda",
@@ -88,7 +91,7 @@
       "predecessors": [
         "cfg_47bb0d91df12"
       ],
-      "mainline": true
+      "mainline": false
     },
     {
       "id": "cfg_bae5c12a29cf",
@@ -152,25 +155,56 @@
       "mainline": false
     },
     {
-      "id": "cfg_36eec27edbea",
+      "id": "cfg_c88e332d6934",
       "bl_count": 1,
-      "cs_count": 4,
+      "cs_count": 2,
       "baselines": [
         {
           "id": "bl4",
           "name": "2.0.0",
           "changesets_json": [
             {
-              "id": "cs1",
-              "name": "cs1"
+              "id": "cs3",
+              "name": "cs3"
             },
             {
-              "id": "cs2",
-              "name": "cs2"
-            },
+              "id": "cs4",
+              "name": "cs4"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        }
+      ],
+      "predecessors": [
+        "cfg_da39a3ee5e6b"
+      ],
+      "mainline": true
+    },
+    {
+      "id": "cfg_cff6d86375c1",
+      "bl_count": 1,
+      "cs_count": 3,
+      "baselines": [
+        {
+          "id": "bl5x",
+          "name": "2.1.0-feature-X",
+          "changesets_json": [
             {
               "id": "cs3",
               "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
             },
             {
               "id": "cs5",
@@ -181,16 +215,12 @@
       ],
       "changesets": [
         {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
-        {
           "id": "cs3",
           "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
         },
         {
           "id": "cs5",
@@ -198,56 +228,69 @@
         }
       ],
       "predecessors": [
-        "cfg_dc052385ebda"
+        "cfg_c88e332d6934"
       ],
       "mainline": true
     },
     {
-      "id": "cfg_e0bca7849527",
-      "bl_count": 3,
-      "cs_count": 5,
+      "id": "cfg_c6fc0da25f5c",
+      "bl_count": 1,
+      "cs_count": 3,
       "baselines": [
         {
-          "id": "bl5x",
-          "name": "2.1.0-feature-X",
+          "id": "bl5y",
+          "name": "2.1.0-feature-Y",
           "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
             {
               "id": "cs3",
               "name": "cs3"
             },
             {
-              "id": "cs5",
-              "name": "cs5"
+              "id": "cs4",
+              "name": "cs4"
             },
             {
               "id": "cs6",
               "name": "cs6"
             }
           ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
         },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        }
+      ],
+      "predecessors": [
+        "cfg_c88e332d6934"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_de2d2b062c7c",
+      "bl_count": 2,
+      "cs_count": 4,
+      "baselines": [
         {
           "id": "bl6",
           "name": "2.2.0-merge",
           "changesets_json": [
             {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
-            {
               "id": "cs3",
               "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
             },
             {
               "id": "cs5",
@@ -264,16 +307,12 @@
           "name": "2.2.0-rebaseline",
           "changesets_json": [
             {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
-            {
               "id": "cs3",
               "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
             },
             {
               "id": "cs5",
@@ -288,16 +327,12 @@
       ],
       "changesets": [
         {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
-        {
           "id": "cs3",
           "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
         },
         {
           "id": "cs5",
@@ -309,34 +344,35 @@
         }
       ],
       "predecessors": [
-        "cfg_36eec27edbea"
+        "cfg_cff6d86375c1",
+        "cfg_c6fc0da25f5c"
       ],
       "mainline": true
     },
     {
-      "id": "cfg_a3d8596513e2",
+      "id": "cfg_bdbc83d0375d",
       "bl_count": 1,
       "cs_count": 5,
       "baselines": [
         {
-          "id": "bl5y",
-          "name": "2.1.0-feature-Y",
+          "id": "bl8a",
+          "name": "2.3.0-hotfix-A",
           "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
             {
               "id": "cs3",
               "name": "cs3"
             },
             {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
               "id": "cs5",
               "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
             },
             {
               "id": "cs7",
@@ -347,20 +383,20 @@
       ],
       "changesets": [
         {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
-        {
           "id": "cs3",
           "name": "cs3"
         },
         {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
           "id": "cs5",
           "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
         },
         {
           "id": "cs7",
@@ -368,161 +404,19 @@
         }
       ],
       "predecessors": [
-        "cfg_36eec27edbea"
-      ],
-      "mainline": false
-    },
-    {
-      "id": "cfg_5808995ddcf8",
-      "bl_count": 1,
-      "cs_count": 6,
-      "baselines": [
-        {
-          "id": "bl8a",
-          "name": "2.3.0-hotfix-A",
-          "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
-            {
-              "id": "cs3",
-              "name": "cs3"
-            },
-            {
-              "id": "cs5",
-              "name": "cs5"
-            },
-            {
-              "id": "cs6",
-              "name": "cs6"
-            },
-            {
-              "id": "cs8",
-              "name": "cs8"
-            }
-          ]
-        }
-      ],
-      "changesets": [
-        {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
-        {
-          "id": "cs3",
-          "name": "cs3"
-        },
-        {
-          "id": "cs5",
-          "name": "cs5"
-        },
-        {
-          "id": "cs6",
-          "name": "cs6"
-        },
-        {
-          "id": "cs8",
-          "name": "cs8"
-        }
-      ],
-      "predecessors": [
-        "cfg_e0bca7849527"
+        "cfg_de2d2b062c7c"
       ],
       "mainline": true
     },
     {
-      "id": "cfg_9bea1eed6b6d",
+      "id": "cfg_aadef37b29dd",
       "bl_count": 1,
-      "cs_count": 6,
+      "cs_count": 5,
       "baselines": [
         {
           "id": "bl8b",
           "name": "2.3.0-hotfix-B",
           "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
-            {
-              "id": "cs3",
-              "name": "cs3"
-            },
-            {
-              "id": "cs5",
-              "name": "cs5"
-            },
-            {
-              "id": "cs6",
-              "name": "cs6"
-            },
-            {
-              "id": "cs9",
-              "name": "cs9"
-            }
-          ]
-        }
-      ],
-      "changesets": [
-        {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
-        {
-          "id": "cs3",
-          "name": "cs3"
-        },
-        {
-          "id": "cs5",
-          "name": "cs5"
-        },
-        {
-          "id": "cs6",
-          "name": "cs6"
-        },
-        {
-          "id": "cs9",
-          "name": "cs9"
-        }
-      ],
-      "predecessors": [
-        "cfg_e0bca7849527"
-      ],
-      "mainline": false
-    },
-    {
-      "id": "cfg_69472b67c557",
-      "bl_count": 1,
-      "cs_count": 8,
-      "baselines": [
-        {
-          "id": "bl9",
-          "name": "2.4.0-final-merge",
-          "changesets_json": [
-            {
-              "id": "cs1",
-              "name": "cs1"
-            },
-            {
-              "id": "cs2",
-              "name": "cs2"
-            },
             {
               "id": "cs3",
               "name": "cs3"
@@ -542,23 +436,11 @@
             {
               "id": "cs8",
               "name": "cs8"
-            },
-            {
-              "id": "cs9",
-              "name": "cs9"
             }
           ]
         }
       ],
       "changesets": [
-        {
-          "id": "cs1",
-          "name": "cs1"
-        },
-        {
-          "id": "cs2",
-          "name": "cs2"
-        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -578,21 +460,402 @@
         {
           "id": "cs8",
           "name": "cs8"
-        },
-        {
-          "id": "cs9",
-          "name": "cs9"
         }
       ],
       "predecessors": [
-        "cfg_5808995ddcf8",
-        "cfg_9bea1eed6b6d",
-        "cfg_bae5c12a29cf"
+        "cfg_de2d2b062c7c"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_fb5e98539d9f",
+      "bl_count": 1,
+      "cs_count": 6,
+      "baselines": [
+        {
+          "id": "bl9",
+          "name": "2.4.0-final-merge",
+          "changesets_json": [
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs5",
+              "name": "cs5"
+            },
+            {
+              "id": "cs6",
+              "name": "cs6"
+            },
+            {
+              "id": "cs7",
+              "name": "cs7"
+            },
+            {
+              "id": "cs8",
+              "name": "cs8"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs5",
+          "name": "cs5"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        },
+        {
+          "id": "cs7",
+          "name": "cs7"
+        },
+        {
+          "id": "cs8",
+          "name": "cs8"
+        }
+      ],
+      "predecessors": [
+        "cfg_bdbc83d0375d",
+        "cfg_aadef37b29dd"
       ],
       "mainline": true
+    },
+    {
+      "id": "cfg_61c6bb61408f",
+      "bl_count": 1,
+      "cs_count": 3,
+      "baselines": [
+        {
+          "id": "banana-1",
+          "name": "banana-1.0.0",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs10",
+              "name": "cs10"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs10",
+          "name": "cs10"
+        }
+      ],
+      "predecessors": [
+        "cfg_47bb0d91df12"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_de9e9b047a7e",
+      "bl_count": 1,
+      "cs_count": 4,
+      "baselines": [
+        {
+          "id": "banana-1.1",
+          "name": "banana-1.1.0",
+          "changesets_json": [
+            {
+              "id": "cs1",
+              "name": "cs1"
+            },
+            {
+              "id": "cs2",
+              "name": "cs2"
+            },
+            {
+              "id": "cs10",
+              "name": "cs10"
+            },
+            {
+              "id": "cs11",
+              "name": "cs11"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs10",
+          "name": "cs10"
+        },
+        {
+          "id": "cs11",
+          "name": "cs11"
+        }
+      ],
+      "predecessors": [
+        "cfg_61c6bb61408f"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_595e839b41d6",
+      "bl_count": 1,
+      "cs_count": 3,
+      "baselines": [
+        {
+          "id": "apple-2",
+          "name": "apple-2.0.0",
+          "changesets_json": [
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs20",
+              "name": "cs20"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs20",
+          "name": "cs20"
+        }
+      ],
+      "predecessors": [
+        "cfg_c88e332d6934"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_ac9b1d2a36b8",
+      "bl_count": 1,
+      "cs_count": 4,
+      "baselines": [
+        {
+          "id": "apple-2.0.1",
+          "name": "apple-2.0.1",
+          "changesets_json": [
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs20",
+              "name": "cs20"
+            },
+            {
+              "id": "cs23",
+              "name": "cs23"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs20",
+          "name": "cs20"
+        },
+        {
+          "id": "cs23",
+          "name": "cs23"
+        }
+      ],
+      "predecessors": [
+        "cfg_595e839b41d6"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_2cd6fe538a07",
+      "bl_count": 1,
+      "cs_count": 4,
+      "baselines": [
+        {
+          "id": "apple-2.1",
+          "name": "apple-2.1.0",
+          "changesets_json": [
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs20",
+              "name": "cs20"
+            },
+            {
+              "id": "cs21",
+              "name": "cs21"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs20",
+          "name": "cs20"
+        },
+        {
+          "id": "cs21",
+          "name": "cs21"
+        }
+      ],
+      "predecessors": [
+        "cfg_595e839b41d6"
+      ],
+      "mainline": false
+    },
+    {
+      "id": "cfg_50a2f100c497",
+      "bl_count": 1,
+      "cs_count": 6,
+      "baselines": [
+        {
+          "id": "apple-3",
+          "name": "apple-3.0.0",
+          "changesets_json": [
+            {
+              "id": "cs3",
+              "name": "cs3"
+            },
+            {
+              "id": "cs4",
+              "name": "cs4"
+            },
+            {
+              "id": "cs20",
+              "name": "cs20"
+            },
+            {
+              "id": "cs21",
+              "name": "cs21"
+            },
+            {
+              "id": "cs22",
+              "name": "cs22"
+            },
+            {
+              "id": "cs23",
+              "name": "cs23"
+            }
+          ]
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs20",
+          "name": "cs20"
+        },
+        {
+          "id": "cs21",
+          "name": "cs21"
+        },
+        {
+          "id": "cs22",
+          "name": "cs22"
+        },
+        {
+          "id": "cs23",
+          "name": "cs23"
+        }
+      ],
+      "predecessors": [
+        "cfg_ac9b1d2a36b8",
+        "cfg_2cd6fe538a07"
+      ],
+      "mainline": false
     }
   ],
   "links": [
+    {
+      "source": "cfg_da39a3ee5e6b",
+      "target": "cfg_47bb0d91df12"
+    },
+    {
+      "source": "cfg_da39a3ee5e6b",
+      "target": "cfg_c88e332d6934"
+    },
+    {
+      "source": "cfg_47bb0d91df12",
+      "target": "cfg_61c6bb61408f"
+    },
     {
       "source": "cfg_47bb0d91df12",
       "target": "cfg_bae5c12a29cf"
@@ -602,36 +865,60 @@
       "target": "cfg_dc052385ebda"
     },
     {
-      "source": "cfg_dc052385ebda",
-      "target": "cfg_36eec27edbea"
+      "source": "cfg_c88e332d6934",
+      "target": "cfg_595e839b41d6"
     },
     {
-      "source": "cfg_bae5c12a29cf",
-      "target": "cfg_69472b67c557"
+      "source": "cfg_c88e332d6934",
+      "target": "cfg_c6fc0da25f5c"
     },
     {
-      "source": "cfg_36eec27edbea",
-      "target": "cfg_a3d8596513e2"
+      "source": "cfg_c88e332d6934",
+      "target": "cfg_cff6d86375c1"
     },
     {
-      "source": "cfg_36eec27edbea",
-      "target": "cfg_e0bca7849527"
+      "source": "cfg_cff6d86375c1",
+      "target": "cfg_de2d2b062c7c"
     },
     {
-      "source": "cfg_e0bca7849527",
-      "target": "cfg_5808995ddcf8"
+      "source": "cfg_c6fc0da25f5c",
+      "target": "cfg_de2d2b062c7c"
     },
     {
-      "source": "cfg_e0bca7849527",
-      "target": "cfg_9bea1eed6b6d"
+      "source": "cfg_de2d2b062c7c",
+      "target": "cfg_aadef37b29dd"
     },
     {
-      "source": "cfg_5808995ddcf8",
-      "target": "cfg_69472b67c557"
+      "source": "cfg_de2d2b062c7c",
+      "target": "cfg_bdbc83d0375d"
     },
     {
-      "source": "cfg_9bea1eed6b6d",
-      "target": "cfg_69472b67c557"
+      "source": "cfg_bdbc83d0375d",
+      "target": "cfg_fb5e98539d9f"
+    },
+    {
+      "source": "cfg_aadef37b29dd",
+      "target": "cfg_fb5e98539d9f"
+    },
+    {
+      "source": "cfg_61c6bb61408f",
+      "target": "cfg_de9e9b047a7e"
+    },
+    {
+      "source": "cfg_595e839b41d6",
+      "target": "cfg_2cd6fe538a07"
+    },
+    {
+      "source": "cfg_595e839b41d6",
+      "target": "cfg_ac9b1d2a36b8"
+    },
+    {
+      "source": "cfg_ac9b1d2a36b8",
+      "target": "cfg_50a2f100c497"
+    },
+    {
+      "source": "cfg_2cd6fe538a07",
+      "target": "cfg_50a2f100c497"
     }
   ]
 }

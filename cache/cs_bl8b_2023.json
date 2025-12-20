@@ -1,16 +1,12 @@
 {
   "changeSets": [
     {
-      "id": "cs1",
-      "name": "cs1"
-    },
-    {
-      "id": "cs2",
-      "name": "cs2"
-    },
-    {
       "id": "cs3",
       "name": "cs3"
+    },
+    {
+      "id": "cs4",
+      "name": "cs4"
     },
     {
       "id": "cs5",
@@ -21,8 +17,8 @@
       "name": "cs6"
     },
     {
-      "id": "cs9",
-      "name": "cs9"
+      "id": "cs8",
+      "name": "cs8"
     }
   ]
 }

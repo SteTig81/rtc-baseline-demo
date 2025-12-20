@@ -51,6 +51,30 @@
     {
       "id": "bl9",
       "name": "2.4.0-final-merge"
+    },
+    {
+      "id": "banana-1",
+      "name": "banana-1.0.0"
+    },
+    {
+      "id": "banana-1.1",
+      "name": "banana-1.1.0"
+    },
+    {
+      "id": "apple-2",
+      "name": "apple-2.0.0"
+    },
+    {
+      "id": "apple-2.0.1",
+      "name": "apple-2.0.1"
+    },
+    {
+      "id": "apple-2.1",
+      "name": "apple-2.1.0"
+    },
+    {
+      "id": "apple-3",
+      "name": "apple-3.0.0"
     }
   ]
 }
