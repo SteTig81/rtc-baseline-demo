@@ -1,1 +1,6 @@
 *.zip
+*.pyc
+
+venv/
+
+ai_notes.txt
