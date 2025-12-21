@@ -31,15 +31,23 @@ def list_baselines(component):
     data = run_lscm(["list", "baselines", "--component", component, "--json"], cache_file)
     return data.get("baselines", [])
 
-def list_changesets_yearly(baseline_id, start_year=2021):
+def list_changesets_yearly(baseline_id, start_year=2013):
+    """
+    Load changesets for a baseline, aggregated by year.
+    Raises an exception if no changesets are found.
+    """
     now = datetime.datetime.utcnow().year
     all_cs = []
+
     for year in range(start_year, now + 1):
         cache_file = os.path.join(CACHE_DIR, f"cs_{baseline_id}_{year}.json")
         if os.path.exists(cache_file):
             with open(cache_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
-        else:
-            continue
-        all_cs.extend(data.get("changeSets", []))
+                all_cs.extend(data.get("changeSets", []))
+
+    if not all_cs:
+        raise ValueError(f"No changesets found for baseline '{baseline_id}' from year {start_year} to {now}!")
+
     return all_cs
+
