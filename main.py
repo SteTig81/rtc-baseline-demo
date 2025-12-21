@@ -3,7 +3,7 @@ import argparse
 import logging
 from lscm_utils import list_baselines, list_changesets_yearly
 from config_nodes import build_config_nodes
-from dag_utils import build_dag_edges, remove_transitive_edges, assign_predecessors, compute_mainline
+from dag_utils import build_dag_edges, remove_transitive_edges, assign_predecessors, compute_root_distance, compute_mainline
 from export_graph import export_graph
 
 logging.basicConfig(level=logging.INFO)
@@ -21,6 +21,7 @@ def main():
     nodes = build_config_nodes(baselines)
     edges = remove_transitive_edges(build_dag_edges(nodes))
     assign_predecessors(nodes, edges)
+    compute_root_distance(nodes)
     compute_mainline(nodes)
     export_graph(nodes, edges, args.output)
 

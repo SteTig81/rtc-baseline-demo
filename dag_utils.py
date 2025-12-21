@@ -1,4 +1,3 @@
-
 from collections import defaultdict
 from itertools import combinations
 import logging
@@ -33,7 +32,6 @@ def remove_transitive_edges(edges):
 
     return {k: sorted(v) for k, v in reduced.items() if v}
 
-
 def assign_predecessors(nodes, edges):
     node_map = {n["id"]: n for n in nodes}
     for n in nodes:
@@ -41,29 +39,57 @@ def assign_predecessors(nodes, edges):
         for src, dsts in edges.items():
             if n["id"] in dsts:
                 preds.append(node_map[src])
+        # Sort predecessors by cs_count descending
         preds.sort(key=lambda x: x["cs_count"], reverse=True)
         n["predecessors"] = [p["id"] for p in preds]
 
-def compute_mainline(nodes):
+def compute_root_distance(nodes):
+    """Compute root_distance for each node in the DAG."""
     node_map = {n["id"]: n for n in nodes}
-    dp = {}
 
-    ordered = sorted(nodes, key=lambda n: n["cs_count"])
-    for n in ordered:
-        if not n["predecessors"]:
-            dp[n["id"]] = (1, n["cs_count"], None)
-        else:
-            best = max(
-                ((dp[p][0], dp[p][1], p) for p in n["predecessors"] if p in dp),
-                key=lambda x: (x[0], x[1])
-            )
-            dp[n["id"]] = (best[0] + 1, best[1] + n["cs_count"], best[2])
-
-    leaf = max(dp.items(), key=lambda x: (x[1][0], x[1][1]))[0]
-    cur = leaf
-    while cur:
-        node_map[cur]["mainline"] = True
-        cur = dp[cur][2]
-
+    # Initialize all distances as None
     for n in nodes:
-        n.setdefault("mainline", False)
+        n["root_distance"] = None
+
+    # Start with root nodes (no predecessors)
+    queue = [n for n in nodes if not n.get("predecessors")]
+    for n in queue:
+        n["root_distance"] = 0
+
+    # BFS traversal to assign distances
+    while queue:
+        current = queue.pop(0)
+        cur_dist = current["root_distance"]
+        # Find nodes for which current is a predecessor
+        for n in nodes:
+            if current["id"] in n.get("predecessors", []):
+                if n["root_distance"] is None or n["root_distance"] < cur_dist + 1:
+                    n["root_distance"] = cur_dist + 1
+                    queue.append(n)
+
+def compute_mainline(nodes):
+    """
+    Compute mainline nodes using root_distance.
+    The mainline follows the longest path from any root to a leaf.
+    Works for multiple partial trees.
+    """
+    node_map = {n["id"]: n for n in nodes}
+
+    # Initialize
+    for n in nodes:
+        n["mainline"] = False
+
+    # Find leaves (nodes with largest root_distance)
+    max_distance = max(n["root_distance"] for n in nodes if n["root_distance"] is not None)
+    leaves = [n for n in nodes if n["root_distance"] == max_distance]
+
+    for leaf in leaves:
+        cur = leaf
+        while cur:
+            cur["mainline"] = True
+            if not cur.get("predecessors"):
+                break
+            preds = [node_map[p] for p in cur["predecessors"]]
+            # Choose predecessor with largest root_distance, tie-breaker cs_count
+            cur = max(preds, key=lambda x: (x["root_distance"], x["cs_count"]))
+

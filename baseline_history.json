@@ -27,7 +27,8 @@
         }
       ],
       "predecessors": [],
-      "mainline": false
+      "root_distance": 0,
+      "mainline": true
     },
     {
       "id": "cfg_dc052385ebda",
@@ -57,7 +58,8 @@
       "predecessors": [
         "cfg_47bb0d91df12"
       ],
-      "mainline": false
+      "root_distance": 1,
+      "mainline": true
     },
     {
       "id": "cfg_bae5c12a29cf",
@@ -92,12 +94,13 @@
       "predecessors": [
         "cfg_47bb0d91df12"
       ],
+      "root_distance": 1,
       "mainline": false
     },
     {
-      "id": "cfg_c88e332d6934",
+      "id": "cfg_cfdb065b0387",
       "bl_count": 1,
-      "cs_count": 2,
+      "cs_count": 4,
       "baselines": [
         {
           "id": "bl4",
@@ -107,6 +110,14 @@
       ],
       "changesets": [
         {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
           "id": "cs3",
           "name": "cs3"
         },
@@ -115,13 +126,17 @@
           "name": "cs4"
         }
       ],
-      "predecessors": [],
+      "predecessors": [
+        "cfg_dc052385ebda",
+        "cfg_bae5c12a29cf"
+      ],
+      "root_distance": 2,
       "mainline": true
     },
     {
-      "id": "cfg_cff6d86375c1",
+      "id": "cfg_514ba95df339",
       "bl_count": 1,
-      "cs_count": 3,
+      "cs_count": 5,
       "baselines": [
         {
           "id": "bl5x",
@@ -130,6 +145,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -144,14 +167,15 @@
         }
       ],
       "predecessors": [
-        "cfg_c88e332d6934"
+        "cfg_cfdb065b0387"
       ],
+      "root_distance": 3,
       "mainline": true
     },
     {
-      "id": "cfg_c6fc0da25f5c",
+      "id": "cfg_4b16dda448d6",
       "bl_count": 1,
-      "cs_count": 3,
+      "cs_count": 5,
       "baselines": [
         {
           "id": "bl5y",
@@ -160,6 +184,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -174,8 +206,9 @@
         }
       ],
       "predecessors": [
-        "cfg_c88e332d6934"
+        "cfg_cfdb065b0387"
       ],
+      "root_distance": 3,
       "mainline": false
     },
     {
@@ -206,6 +239,7 @@
       "predecessors": [
         "cfg_47bb0d91df12"
       ],
+      "root_distance": 1,
       "mainline": false
     },
     {
@@ -240,6 +274,7 @@
       "predecessors": [
         "cfg_61c6bb61408f"
       ],
+      "root_distance": 2,
       "mainline": false
     },
     {
@@ -278,12 +313,13 @@
       "predecessors": [
         "cfg_de9e9b047a7e"
       ],
+      "root_distance": 3,
       "mainline": false
     },
     {
-      "id": "cfg_595e839b41d6",
+      "id": "cfg_bac49cafefad",
       "bl_count": 1,
-      "cs_count": 3,
+      "cs_count": 5,
       "baselines": [
         {
           "id": "bl_a1",
@@ -292,6 +328,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -306,14 +350,15 @@
         }
       ],
       "predecessors": [
-        "cfg_c88e332d6934"
+        "cfg_cfdb065b0387"
       ],
+      "root_distance": 3,
       "mainline": false
     },
     {
-      "id": "cfg_ac9b1d2a36b8",
+      "id": "cfg_b5a906ca55b0",
       "bl_count": 1,
-      "cs_count": 4,
+      "cs_count": 6,
       "baselines": [
         {
           "id": "bl_a2",
@@ -322,6 +367,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -340,14 +393,15 @@
         }
       ],
       "predecessors": [
-        "cfg_595e839b41d6"
+        "cfg_bac49cafefad"
       ],
+      "root_distance": 4,
       "mainline": false
     },
     {
-      "id": "cfg_2cd6fe538a07",
+      "id": "cfg_69c323728514",
       "bl_count": 1,
-      "cs_count": 4,
+      "cs_count": 6,
       "baselines": [
         {
           "id": "bl_a3",
@@ -356,6 +410,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -374,14 +436,15 @@
         }
       ],
       "predecessors": [
-        "cfg_595e839b41d6"
+        "cfg_bac49cafefad"
       ],
+      "root_distance": 4,
       "mainline": false
     },
     {
-      "id": "cfg_50a2f100c497",
+      "id": "cfg_a8d3702c48f2",
       "bl_count": 1,
-      "cs_count": 6,
+      "cs_count": 8,
       "baselines": [
         {
           "id": "bl_a4",
@@ -390,6 +453,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -416,15 +487,16 @@
         }
       ],
       "predecessors": [
-        "cfg_ac9b1d2a36b8",
-        "cfg_2cd6fe538a07"
+        "cfg_b5a906ca55b0",
+        "cfg_69c323728514"
       ],
+      "root_distance": 5,
       "mainline": false
     },
     {
-      "id": "cfg_de2d2b062c7c",
+      "id": "cfg_55f47aecf48c",
       "bl_count": 2,
-      "cs_count": 4,
+      "cs_count": 6,
       "baselines": [
         {
           "id": "bl6",
@@ -439,6 +511,14 @@
       ],
       "changesets": [
         {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
           "id": "cs3",
           "name": "cs3"
         },
@@ -456,15 +536,16 @@
         }
       ],
       "predecessors": [
-        "cfg_cff6d86375c1",
-        "cfg_c6fc0da25f5c"
+        "cfg_514ba95df339",
+        "cfg_4b16dda448d6"
       ],
+      "root_distance": 4,
       "mainline": true
     },
     {
-      "id": "cfg_bdbc83d0375d",
+      "id": "cfg_d586ff29feb8",
       "bl_count": 1,
-      "cs_count": 5,
+      "cs_count": 7,
       "baselines": [
         {
           "id": "bl8a",
@@ -474,6 +555,14 @@
       ],
       "changesets": [
         {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
           "id": "cs3",
           "name": "cs3"
         },
@@ -495,14 +584,15 @@
         }
       ],
       "predecessors": [
-        "cfg_de2d2b062c7c"
+        "cfg_55f47aecf48c"
       ],
+      "root_distance": 5,
       "mainline": true
     },
     {
-      "id": "cfg_aadef37b29dd",
+      "id": "cfg_aae2b3472679",
       "bl_count": 1,
-      "cs_count": 5,
+      "cs_count": 7,
       "baselines": [
         {
           "id": "bl8b",
@@ -512,6 +602,14 @@
       ],
       "changesets": [
         {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
           "id": "cs3",
           "name": "cs3"
         },
@@ -533,14 +631,15 @@
         }
       ],
       "predecessors": [
-        "cfg_de2d2b062c7c"
+        "cfg_55f47aecf48c"
       ],
+      "root_distance": 5,
       "mainline": false
     },
     {
-      "id": "cfg_fb5e98539d9f",
+      "id": "cfg_98cca54abb30",
       "bl_count": 1,
-      "cs_count": 6,
+      "cs_count": 8,
       "baselines": [
         {
           "id": "bl9",
@@ -549,6 +648,14 @@
         }
       ],
       "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
         {
           "id": "cs3",
           "name": "cs3"
@@ -575,9 +682,10 @@
         }
       ],
       "predecessors": [
-        "cfg_bdbc83d0375d",
-        "cfg_aadef37b29dd"
+        "cfg_d586ff29feb8",
+        "cfg_aae2b3472679"
       ],
+      "root_distance": 6,
       "mainline": true
     }
   ],
@@ -595,24 +703,32 @@
       "target": "cfg_dc052385ebda"
     },
     {
-      "source": "cfg_c88e332d6934",
-      "target": "cfg_595e839b41d6"
+      "source": "cfg_dc052385ebda",
+      "target": "cfg_cfdb065b0387"
     },
     {
-      "source": "cfg_c88e332d6934",
-      "target": "cfg_c6fc0da25f5c"
+      "source": "cfg_bae5c12a29cf",
+      "target": "cfg_cfdb065b0387"
     },
     {
-      "source": "cfg_c88e332d6934",
-      "target": "cfg_cff6d86375c1"
+      "source": "cfg_cfdb065b0387",
+      "target": "cfg_4b16dda448d6"
     },
     {
-      "source": "cfg_cff6d86375c1",
-      "target": "cfg_de2d2b062c7c"
+      "source": "cfg_cfdb065b0387",
+      "target": "cfg_514ba95df339"
     },
     {
-      "source": "cfg_c6fc0da25f5c",
-      "target": "cfg_de2d2b062c7c"
+      "source": "cfg_cfdb065b0387",
+      "target": "cfg_bac49cafefad"
+    },
+    {
+      "source": "cfg_514ba95df339",
+      "target": "cfg_55f47aecf48c"
+    },
+    {
+      "source": "cfg_4b16dda448d6",
+      "target": "cfg_55f47aecf48c"
     },
     {
       "source": "cfg_61c6bb61408f",
@@ -623,36 +739,36 @@
       "target": "cfg_496bf65f6d81"
     },
     {
-      "source": "cfg_595e839b41d6",
-      "target": "cfg_2cd6fe538a07"
+      "source": "cfg_bac49cafefad",
+      "target": "cfg_69c323728514"
     },
     {
-      "source": "cfg_595e839b41d6",
-      "target": "cfg_ac9b1d2a36b8"
+      "source": "cfg_bac49cafefad",
+      "target": "cfg_b5a906ca55b0"
     },
     {
-      "source": "cfg_ac9b1d2a36b8",
-      "target": "cfg_50a2f100c497"
+      "source": "cfg_b5a906ca55b0",
+      "target": "cfg_a8d3702c48f2"
     },
     {
-      "source": "cfg_2cd6fe538a07",
-      "target": "cfg_50a2f100c497"
+      "source": "cfg_69c323728514",
+      "target": "cfg_a8d3702c48f2"
     },
     {
-      "source": "cfg_de2d2b062c7c",
-      "target": "cfg_aadef37b29dd"
+      "source": "cfg_55f47aecf48c",
+      "target": "cfg_aae2b3472679"
     },
     {
-      "source": "cfg_de2d2b062c7c",
-      "target": "cfg_bdbc83d0375d"
+      "source": "cfg_55f47aecf48c",
+      "target": "cfg_d586ff29feb8"
     },
     {
-      "source": "cfg_bdbc83d0375d",
-      "target": "cfg_fb5e98539d9f"
+      "source": "cfg_d586ff29feb8",
+      "target": "cfg_98cca54abb30"
     },
     {
-      "source": "cfg_aadef37b29dd",
-      "target": "cfg_fb5e98539d9f"
+      "source": "cfg_aae2b3472679",
+      "target": "cfg_98cca54abb30"
     }
   ]
 }
