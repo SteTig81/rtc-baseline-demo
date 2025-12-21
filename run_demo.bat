@@ -4,5 +4,5 @@ py -3.14 -m venv venv
 call venv\Scripts\activate
 python -m pip install --upgrade pip
 python main.py --component MyComponent
-start index.html
+python -m http.server 8080
 pause

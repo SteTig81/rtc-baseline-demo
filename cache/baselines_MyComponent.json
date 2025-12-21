@@ -2,79 +2,103 @@
   "baselines": [
     {
       "id": "bl1",
-      "name": "1.0.0"
+      "name": "1.0.0",
+      "creation_date": "2020-01-15T10:00:00Z"
     },
     {
       "id": "bl1r",
-      "name": "1.0.0-rerelease"
+      "name": "1.0.0-rerelease",
+      "creation_date": "2020-02-14T10:00:00Z"
     },
     {
       "id": "bl2",
-      "name": "1.1.0"
+      "name": "1.1.0",
+      "creation_date": "2020-05-14T10:00:00Z"
     },
     {
       "id": "bl3a",
-      "name": "1.1.1-hotfix-A"
+      "name": "1.1.1-hotfix-A",
+      "creation_date": "2020-06-13T10:00:00Z"
     },
     {
       "id": "bl3b",
-      "name": "1.1.1-hotfix-B"
+      "name": "1.1.1-hotfix-B",
+      "creation_date": "2020-06-23T10:00:00Z"
     },
     {
       "id": "bl4",
-      "name": "2.0.0"
+      "name": "2.0.0",
+      "creation_date": "2021-01-14T10:00:00Z"
     },
     {
       "id": "bl5x",
-      "name": "2.1.0-feature-X"
+      "name": "2.1.0-feature-X",
+      "creation_date": "2021-03-10T10:00:00Z"
     },
     {
       "id": "bl5y",
-      "name": "2.1.0-feature-Y"
+      "name": "2.1.0-feature-Y",
+      "creation_date": "2021-03-20T10:00:00Z"
+    },
+    {
+      "id": "bl_b1",
+      "name": "banana-1.0.0",
+      "creation_date": "2020-02-24T10:00:00Z"
+    },
+    {
+      "id": "bl_b2",
+      "name": "banana-1.1.0",
+      "creation_date": "2020-04-14T10:00:00Z"
+    },
+    {
+      "id": "bl_b3",
+      "name": "banana-1.2.0",
+      "creation_date": "2020-06-03T10:00:00Z"
+    },
+    {
+      "id": "bl_a1",
+      "name": "apple-2.0.0",
+      "creation_date": "2021-01-29T10:00:00Z"
+    },
+    {
+      "id": "bl_a2",
+      "name": "apple-2.0.1",
+      "creation_date": "2021-02-13T10:00:00Z"
+    },
+    {
+      "id": "bl_a3",
+      "name": "apple-2.1.0",
+      "creation_date": "2021-02-28T10:00:00Z"
+    },
+    {
+      "id": "bl_a4",
+      "name": "apple-3.0.0",
+      "creation_date": "2021-04-29T10:00:00Z"
     },
     {
       "id": "bl6",
-      "name": "2.2.0-merge"
+      "name": "2.2.0-merge",
+      "creation_date": "2021-05-09T10:00:00Z"
     },
     {
       "id": "bl7",
-      "name": "2.2.0-rebaseline"
+      "name": "2.2.0-rebaseline",
+      "creation_date": "2021-06-18T10:00:00Z"
     },
     {
       "id": "bl8a",
-      "name": "2.3.0-hotfix-A"
+      "name": "2.3.0-hotfix-A",
+      "creation_date": "2021-07-28T10:00:00Z"
     },
     {
       "id": "bl8b",
-      "name": "2.3.0-hotfix-B"
+      "name": "2.3.0-hotfix-B",
+      "creation_date": "2021-08-02T10:00:00Z"
     },
     {
       "id": "bl9",
-      "name": "2.4.0-final-merge"
-    },
-    {
-      "id": "banana-1",
-      "name": "banana-1.0.0"
-    },
-    {
-      "id": "banana-1.1",
-      "name": "banana-1.1.0"
-    },
-    {
-      "id": "apple-2",
-      "name": "apple-2.0.0"
-    },
-    {
-      "id": "apple-2.0.1",
-      "name": "apple-2.0.1"
-    },
-    {
-      "id": "apple-2.1",
-      "name": "apple-2.1.0"
-    },
-    {
-      "id": "apple-3",
-      "name": "apple-3.0.0"
+      "name": "2.4.0-final-merge",
+      "creation_date": "2021-09-16T10:00:00Z"
     }
   ]
 }
