@@ -2,156 +2,217 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Baseline History Tree (Sub-Grid)</title>
+<title>Baseline Grid</title>
 <style>
-body { font-family: Arial, sans-serif; }
+body { font-family: Arial, sans-serif; margin:0; padding:0; }
+header, footer { font-size: 14px; padding: 4px 8px; background: #f0f0f0; }
+
 .grid-line { stroke: #e0e0e0; stroke-width: 1px; }
-.node circle { stroke: #333; stroke-width: 1.5px; }
-.node text { font-size: 12px; text-anchor: middle; pointer-events: none; }
-.link { fill: none; stroke: #666; stroke-width: 2px; marker-end: url(#arrow); }
+.coord { font-size: 10px; fill: #555; }
+
+.node rect {
+    fill: #ffffff;
+    stroke: #333;
+    stroke-width: 1.5px;
+}
+
+.node.mainline rect {
+    fill: #d8f2d8; /* light green for mainline */
+}
+
+.node text {
+    font-size: 10px;
+    fill: #000;
+    text-anchor: middle;
+    pointer-events: none;
+}
+
+.node text.cfg {
+    font-weight: bold;
+}
+
+.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 2px;
+}
 </style>
 </head>
+
 <body>
-<h2>Baseline History Tree (Sub-Grid)</h2>
-<svg width="1400" height="900"></svg>
+<header>Grid Visualization</header>
+<svg id="grid"></svg>
+<footer>Use mouse wheel to zoom and drag to pan</footer>
 
 <script src="https://d3js.org/d3.v7.min.js"></script>
 <script>
-const width = 1400;
-const height = 900;
-const svg = d3.select("svg");
+const headerH = 28;
+const footerH = 20;
+const width = window.innerWidth;
+const height = window.innerHeight - headerH - footerH;
 
-// Arrowhead
-svg.append("defs").append("marker")
-  .attr("id", "arrow")
-  .attr("viewBox", "0 -5 10 10")
-  .attr("refX", 20)
-  .attr("refY", 0)
-  .attr("markerWidth", 6)
-  .attr("markerHeight", 6)
-  .attr("orient", "auto")
-.append("path")
-  .attr("d", "M0,-5L10,0L0,5")
-  .attr("fill", "#666");
+const svg = d3.select("#grid")
+  .attr("width", width)
+  .attr("height", height);
 
-// Zoomable container
 const gZoom = svg.append("g");
-svg.call(
-  d3.zoom().scaleExtent([0.3,4]).on("zoom", e => gZoom.attr("transform", e.transform))
-);
 
-// Load JSON
+// Zoom
+const zoom = d3.zoom()
+  .scaleExtent([0.5, 4])
+  .on("zoom", e => gZoom.attr("transform", e.transform));
+
+svg.call(zoom);
+
+// === GRID SETUP ===
+const cellW = 200;
+const cellH = 60;
+const trunkX = width / 2;
+const minGX = -10;
+const maxGX = 10;
+const minGY = -1;
+const maxGY = 100;
+
+const bottomOffsetRows = 1;
+const offsetY = height - bottomOffsetRows * cellH;
+
+// Horizontal grid
+for (let gy = minGY; gy <= maxGY; gy++) {
+    const yPix = offsetY - gy * cellH;
+
+    gZoom.append("line")
+        .attr("class", "grid-line")
+        .attr("x1", trunkX + minGX * cellW)
+        .attr("y1", yPix)
+        .attr("x2", trunkX + maxGX * cellW)
+        .attr("y2", yPix);
+
+    gZoom.append("text")
+        .attr("class", "coord")
+        .attr("x", trunkX + minGX * cellW - 10)
+        .attr("y", yPix + 4)
+        .text(`y=${gy}`);
+}
+
+// Vertical grid
+for (let gx = minGX; gx <= maxGX; gx++) {
+    const xPix = trunkX + gx * cellW;
+
+    gZoom.append("line")
+        .attr("class", "grid-line")
+        .attr("x1", xPix)
+        .attr("y1", offsetY - minGY * cellH)
+        .attr("x2", xPix)
+        .attr("y2", offsetY - maxGY * cellH);
+
+    gZoom.append("text")
+        .attr("class", "coord")
+        .attr("x", xPix)
+        .attr("y", offsetY + 12)
+        .text(`x=${gx}`);
+}
+
+// === LOAD DATA ===
 d3.json("baseline_history.json").then(data => {
+
     const nodes = data.nodes;
     const links = data.links;
-    const cellW = 160;
-    const cellH = 90;
-    const trunkX = width / 2;
-    const trunkY0 = height - 80;
+    const nodeById = new Map(nodes.map(n => [n.id, n]));
 
-    const nodeById = new Map(nodes.map(n=>[n.id,n]));
+    // ---- MAINLINE ----
+    const mainline = nodes
+        .filter(n => n.mainline)
+        .sort((a,b) => a.root_distance - b.root_distance);
 
-    // Mainline nodes
-    const mainline = nodes.filter(n=>n.mainline);
-    mainline.forEach((n,i)=>{
-        n.gridX=0; n.gridY=i; n.dir=0;
-        n.x = trunkX; n.y = trunkY0 - i*cellH;
+    mainline.forEach(n => {
+        n.gridX = 0;
+        n.gridY = n.root_distance;
+        n.x = trunkX;
+        n.y = offsetY - n.gridY * cellH;
     });
 
-    // Side branches
-    let branchCount=0;
+    // ---- SIDE BRANCHES ----
+    let leftCount = 0;
+    let rightCount = 0;
     const branchDir = new Map();
-    const processed = new Set();
+    const branchDepth = new Map();
 
-    function assignSubGrid(n){
-        if(processed.has(n.id)) return;
-        processed.add(n.id);
+    nodes
+      .filter(n => !n.mainline)
+      .sort((a,b) => a.root_distance - b.root_distance)
+      .forEach(n => {
 
-        const preds = n.predecessors.map(pid=>nodeById.get(pid));
-        if(n.mainline) return;
+        const preds = n.predecessors.map(id => nodeById.get(id));
+        const trunkPred = preds.find(p => p.mainline);
 
-        // --- branch root from trunk
-        const trunkPred = preds.find(p=>p.mainline);
-        if(trunkPred){
-            branchCount++;
-            const dir = (branchCount%2===0)?-1:1;
+        if (trunkPred) {
+            const dir = (leftCount <= rightCount) ? -1 : +1;
             branchDir.set(n.id, dir);
-            n.dir = dir;
+            branchDepth.set(n.id, 1);
+            if (dir < 0) leftCount++; else rightCount++;
+
             n.gridX = dir;
             n.gridY = trunkPred.gridY;
-        } else {
-            // continuation or sub-branch
+        } else if (preds.length > 0) {
             const p = preds[0];
-            assignSubGrid(p);
-            n.dir = p.dir;
-            n.gridX = p.gridX + (p.mainline?0:1*p.dir); // increment X for sub-branch
-            // gridY = average of predecessors + fractional offset
-            n.gridY = preds.reduce((sum,d)=>sum+d.gridY,0)/preds.length + 0.3;
+            const dir = branchDir.get(p.id);
+            const depth = branchDepth.get(p.id) + 1;
+
+            branchDir.set(n.id, dir);
+            branchDepth.set(n.id, depth);
+
+            n.gridX = dir * depth;
+            n.gridY = p.gridY;
         }
 
-        n.x = trunkX + n.gridX*cellW;
-        n.y = trunkY0 - n.gridY*cellH;
-    }
+        n.x = trunkX + n.gridX * cellW;
+        n.y = offsetY - n.gridY * cellH;
+    });
 
-    nodes.forEach(assignSubGrid);
-
-    // Draw grid
-    const minGX = Math.floor(d3.min(nodes,d=>d.gridX)-1);
-    const maxGX = Math.ceil(d3.max(nodes,d=>d.gridX)+1);
-    const minGY = -1;
-    const maxGY = Math.ceil(d3.max(nodes,d=>d.gridY)+1);
-
-    for(let gx=minGX;gx<=maxGX;gx++){
-        gZoom.append("line")
-            .attr("class","grid-line")
-            .attr("x1",trunkX+gx*cellW)
-            .attr("y1",trunkY0-minGY*cellH)
-            .attr("x2",trunkX+gx*cellW)
-            .attr("y2",trunkY0-maxGY*cellH);
-    }
-    for(let gy=minGY;gy<=maxGY;gy++){
-        gZoom.append("line")
-            .attr("class","grid-line")
-            .attr("x1",trunkX+minGX*cellW)
-            .attr("y1",trunkY0-gy*cellH)
-            .attr("x2",trunkX+maxGX*cellW)
-            .attr("y2",trunkY0-gy*cellH);
-    }
-
-    // Draw links
+    // ---- LINKS ----
     gZoom.selectAll(".link")
         .data(links)
         .enter()
         .append("path")
-        .attr("class","link")
-        .attr("d", d=>{
+        .attr("class", "link")
+        .attr("d", d => {
             const s = nodeById.get(d.source);
             const t = nodeById.get(d.target);
-            const cx = (s.x+t.x)/2;
-            return `M${s.x},${s.y} C${cx},${s.y} ${cx},${t.y} ${t.x},${t.y}`;
+            return `M${s.x},${s.y} L${t.x},${t.y}`;
         });
 
-    // Draw nodes
-    const g = gZoom.selectAll(".node")
+    // ---- NODES ----
+    const nodeG = gZoom.selectAll(".node")
         .data(nodes)
         .enter()
         .append("g")
-        .attr("class","node")
-        .attr("transform", d=>`translate(${d.x},${d.y})`);
+        .attr("class", d => `node${d.mainline ? " mainline" : ""}`)
+        .attr("transform", d => `translate(${d.x},${d.y})`);
 
-    g.append("circle")
-        .attr("r",22)
-        .attr("fill", d=>d.mainline?"#1f77b4":"#ff7f0e");
+    const padding = 6;
+    const lineH = 12;
+    const boxW = 120;
 
-    g.append("text")
-        .attr("dy",-6)
-        .text(d=>d.baselines.map(b=>b.name).join(", "));
+    nodeG.each(function(d) {
+        const g = d3.select(this);
+        const lines = [d.id, ...d.baselines.map(b => b.name)];
+        const boxH = padding*2 + lines.length * lineH;
 
-    g.append("text")
-        .attr("dy",10)
-        .attr("font-size","10px")
-        .attr("fill","#555")
-        .text(d=>d.gridX.toFixed(1)+"/"+d.gridY.toFixed(1));
+        g.append("rect")
+            .attr("x", -boxW/2)
+            .attr("y", -boxH/2)
+            .attr("width", boxW)
+            .attr("height", boxH)
+            .attr("rx", 4)
+            .attr("ry", 4);
+
+        lines.forEach((txt, i) => {
+            g.append("text")
+                .attr("class", i === 0 ? "cfg" : null)
+                .attr("y", -boxH/2 + padding + (i+1)*lineH - 4)
+                .text(txt);
+        });
+    });
 });
 </script>
 </body>
