@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Baseline History Tree</title>
+
 <style>
 body { font-family: Arial, sans-serif; margin:0; padding:0; }
 header, footer { font-size: 14px; padding: 4px 8px; background: #f0f0f0; }
@@ -122,33 +123,59 @@ d3.json("baseline_history.json").then(data => {
         });
     });
 
-    function layoutNode(node, x, y, dir) {
+    // === SIDE BRANCH ORDERING ===
+    function branchOrder(a, b) {
+        if (a.root_distance !== b.root_distance) {
+            return a.root_distance - b.root_distance;
+        }
+        const da = new Date(a.baselines[0].creation_date);
+        const db = new Date(b.baselines[0].creation_date);
+        if (da - db !== 0) return da - db;
+        return a.id.localeCompare(b.id);
+    }
+
+    // === LAYOUT ===
+    function layoutNode(node, x, lane, dir) {
         node.gridX = x;
-        node.gridY = y;
+        node.gridY = lane;
         node.x = trunkX + x * cellW;
-        node.y = offsetY - y * cellH;
+        node.y = offsetY - lane * cellH;
 
-        let currentY = y;
+        let nextLane = lane;
 
-        // Each side branch gets exactly one lane
-        node.sideChildren.forEach((sc, i) => {
-            const dx = dir || (i % 2 === 0 ? -1 : 1);
-            currentY += 1;
-            layoutNode(sc, x + dx, currentY, dx);
-        });
+        const main = node.mainlineChild;
+        const sides = node.sideChildren.slice();
 
-        // Mainline continues after all side branches
-        if (node.mainlineChild) {
-            return layoutNode(node.mainlineChild, x, currentY + 1, dir);
+        // ---- SIDE BRANCHES ----
+        if (sides.length > 0) {
+            sides.sort(branchOrder);
+
+            const dx = dir || -1;
+
+            // one side branch stays on same lane
+            const stay = sides.shift();
+            layoutNode(stay, x + dx, lane, dx);
+
+            // remaining side branches fork
+            sides.forEach(sc => {
+                nextLane += 1;
+                layoutNode(sc, x + dx, nextLane, dx);
+            });
         }
 
-        return currentY;
+        // ---- MAINLINE ----
+        if (main) {
+            nextLane += 1;
+            return layoutNode(main, x, nextLane, dir);
+        }
+
+        return nextLane;
     }
 
     const root = nodes.find(n => n.mainline && n.predecessors.length === 0);
     layoutNode(root, 0, 0, 1);
 
-    // Draw links
+    // === DRAW LINKS ===
     gZoom.selectAll(".link")
         .data(links)
         .enter()
@@ -160,7 +187,7 @@ d3.json("baseline_history.json").then(data => {
             return `M${s.x},${s.y} L${t.x},${t.y}`;
         });
 
-    // Draw nodes
+    // === DRAW NODES ===
     const g = gZoom.selectAll(".node")
         .data(nodes)
         .enter()
