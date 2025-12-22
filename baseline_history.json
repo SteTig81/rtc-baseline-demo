@@ -212,6 +212,49 @@
       "mainline": false
     },
     {
+      "id": "cfg_8f851fa1017a",
+      "bl_count": 1,
+      "cs_count": 6,
+      "baselines": [
+        {
+          "id": "bl5z",
+          "name": "2.1.0-feature-Z",
+          "creation_date": "2021-03-30T10:00:00Z"
+        }
+      ],
+      "changesets": [
+        {
+          "id": "cs1",
+          "name": "cs1"
+        },
+        {
+          "id": "cs2",
+          "name": "cs2"
+        },
+        {
+          "id": "cs3",
+          "name": "cs3"
+        },
+        {
+          "id": "cs4",
+          "name": "cs4"
+        },
+        {
+          "id": "cs6",
+          "name": "cs6"
+        },
+        {
+          "id": "cs6_2",
+          "name": "cs6_2"
+        }
+      ],
+      "predecessors": [
+        "cfg_4b16dda448d6"
+      ],
+      "root_distance": 4,
+      "mainline": false
+    },
+    {
       "id": "cfg_61c6bb61408f",
       "bl_count": 1,
       "cs_count": 3,
@@ -729,6 +772,10 @@
     {
       "source": "cfg_4b16dda448d6",
       "target": "cfg_55f47aecf48c"
+    },
+    {
+      "source": "cfg_4b16dda448d6",
+      "target": "cfg_8f851fa1017a"
     },
     {
       "source": "cfg_61c6bb61408f",

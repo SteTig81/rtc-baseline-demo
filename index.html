@@ -64,43 +64,11 @@ svg.call(
     .on("zoom", e => gZoom.attr("transform", e.transform))
 );
 
-// === GRID ===
+// === GRID CONSTANTS ===
 const cellW = 200;
 const cellH = 60;
 const trunkX = width / 2;
 const offsetY = height - cellH;
-
-for (let y = -1; y <= 50; y++) {
-    const py = offsetY - y * cellH;
-    gZoom.append("line")
-        .attr("class","grid-line")
-        .attr("x1", trunkX - 10 * cellW)
-        .attr("y1", py)
-        .attr("x2", trunkX + 10 * cellW)
-        .attr("y2", py);
-
-    gZoom.append("text")
-        .attr("class","coord")
-        .attr("x", trunkX - 10 * cellW - 10)
-        .attr("y", py + 4)
-        .text(`y=${y}`);
-}
-
-for (let x = -10; x <= 10; x++) {
-    const px = trunkX + x * cellW;
-    gZoom.append("line")
-        .attr("class","grid-line")
-        .attr("x1", px)
-        .attr("y1", offsetY + cellH)
-        .attr("x2", px)
-        .attr("y2", offsetY - 50 * cellH);
-
-    gZoom.append("text")
-        .attr("class","coord")
-        .attr("x", px)
-        .attr("y", offsetY + 14)
-        .text(`x=${x}`);
-}
 
 // === DATA ===
 d3.json("baseline_history.json").then(data => {
@@ -123,7 +91,7 @@ d3.json("baseline_history.json").then(data => {
         });
     });
 
-    // === SIDE BRANCH ORDERING ===
+    // ---- SIDE BRANCH ORDERING ----
     function branchOrder(a, b) {
         if (a.root_distance !== b.root_distance) {
             return a.root_distance - b.root_distance;
@@ -134,7 +102,7 @@ d3.json("baseline_history.json").then(data => {
         return a.id.localeCompare(b.id);
     }
 
-    // === LAYOUT ===
+    // ---- LAYOUT ----
     function layoutNode(node, x, lane, dir) {
         node.gridX = x;
         node.gridY = lane;
@@ -146,24 +114,19 @@ d3.json("baseline_history.json").then(data => {
         const main = node.mainlineChild;
         const sides = node.sideChildren.slice();
 
-        // ---- SIDE BRANCHES ----
         if (sides.length > 0) {
             sides.sort(branchOrder);
-
             const dx = dir || -1;
 
-            // one side branch stays on same lane
             const stay = sides.shift();
             layoutNode(stay, x + dx, lane, dx);
 
-            // remaining side branches fork
             sides.forEach(sc => {
                 nextLane += 1;
                 layoutNode(sc, x + dx, nextLane, dx);
             });
         }
 
-        // ---- MAINLINE ----
         if (main) {
             nextLane += 1;
             return layoutNode(main, x, nextLane, dir);
@@ -174,6 +137,48 @@ d3.json("baseline_history.json").then(data => {
 
     const root = nodes.find(n => n.mainline && n.predecessors.length === 0);
     layoutNode(root, 0, 0, 1);
+
+    // === COMPUTE GRID EXTENTS ===
+    const xs = nodes.map(n => n.gridX);
+    const ys = nodes.map(n => n.gridY);
+
+    const minX = Math.min(...xs) - 1;
+    const maxX = Math.max(...xs) + 1;
+    const minY = Math.min(...ys) - 1;
+    const maxY = Math.max(...ys) + 1;
+
+    // === DRAW GRID ===
+    for (let y = minY; y <= maxY; y++) {
+        const py = offsetY - y * cellH;
+        gZoom.append("line")
+            .attr("class","grid-line")
+            .attr("x1", trunkX + minX * cellW)
+            .attr("y1", py)
+            .attr("x2", trunkX + maxX * cellW)
+            .attr("y2", py);
+
+        gZoom.append("text")
+            .attr("class","coord")
+            .attr("x", trunkX + minX * cellW - 10)
+            .attr("y", py + 4)
+            .text(`y=${y}`);
+    }
+
+    for (let x = minX; x <= maxX; x++) {
+        const px = trunkX + x * cellW;
+        gZoom.append("line")
+            .attr("class","grid-line")
+            .attr("x1", px)
+            .attr("y1", offsetY - minY * cellH)
+            .attr("x2", px)
+            .attr("y2", offsetY - maxY * cellH);
+
+        gZoom.append("text")
+            .attr("class","coord")
+            .attr("x", px)
+            .attr("y", offsetY - minY * cellH + 14)
+            .text(`x=${x}`);
+    }
 
     // === DRAW LINKS ===
     gZoom.selectAll(".link")
