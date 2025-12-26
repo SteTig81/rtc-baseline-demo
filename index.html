@@ -106,7 +106,7 @@ d3.json("baseline_history.json").then(data => {
 
     // --- side branch layout ---
     function layoutSideBranch(node, depth, startLane) {
-        const x = -depth;
+        const x = depth;
 
         node.gridX = x;
         node.gridY = startLane;
@@ -116,18 +116,16 @@ d3.json("baseline_history.json").then(data => {
         let maxLane = startLane;
         const sides = node.sideChildren.slice().sort(branchOrder);
 
-        if (sides.length > 0) {
-            // continuation
-            maxLane = Math.max(
-                maxLane,
-                layoutSideBranch(sides[0], depth + 1, startLane)
-            );
-
-            // forks
+        if (sides.length === 1) {
+            maxLane = layoutSideBranch(sides[0], depth + 1, startLane);
+        }
+        else if (sides.length > 1) {
+            maxLane = layoutSideBranch(sides[0], depth + 1, startLane);
             for (let i = 1; i < sides.length; i++) {
-                maxLane = Math.max(
-                    maxLane,
-                    layoutSideBranch(sides[i], depth + 1, maxLane + 1)
+                maxLane = layoutSideBranch(
+                    sides[i],
+                    depth + 1,
+                    maxLane + 1
                 );
             }
         }
@@ -139,7 +137,6 @@ d3.json("baseline_history.json").then(data => {
     let currentLane = 0;
 
     mainline.forEach(m => {
-        // place mainline node
         m.gridX = 0;
         m.gridY = currentLane;
         m.x = trunkX;
@@ -148,7 +145,6 @@ d3.json("baseline_history.json").then(data => {
         let maxLane = currentLane;
         let nextSideLane = currentLane;
 
-        // render side branches sequentially
         m.sideChildren
             .slice()
             .sort(branchOrder)
@@ -158,7 +154,6 @@ d3.json("baseline_history.json").then(data => {
                 nextSideLane = usedLane + 1;
             });
 
-        // advance mainline
         currentLane = maxLane + 1;
     });
 
