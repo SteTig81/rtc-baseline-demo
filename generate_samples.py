@@ -52,6 +52,7 @@ baselines = {
         {"id": "bl_b3", "name": "banana-1.2.0",         "creation_date": d(140)},
         {"id": "bl_a1", "name": "apple-2.0.0",          "creation_date": d(380)},
         {"id": "bl_a2", "name": "apple-2.0.1",          "creation_date": d(395)},
+        {"id": "bl_a22", "name": "apple-2.0.2",          "creation_date": d(398)},
         {"id": "bl_a3", "name": "apple-2.1.0",          "creation_date": d(410)},
         {"id": "bl_a4", "name": "apple-3.0.0",          "creation_date": d(470)},
         {"id": "bl6",   "name": "2.2.0-merge",          "creation_date": d(480)},
@@ -89,6 +90,7 @@ cs_sets = {
 
     "bl_a1_2022": ["cs1","cs2","cs3","cs4","cs20"],
     "bl_a2_2022": ["cs1","cs2","cs3","cs4","cs20","cs23"],
+    "bl_a22_2022": ["cs1","cs2","cs3","cs4","cs20","cs23","cs22"],
     "bl_a3_2022": ["cs1","cs2","cs3","cs4","cs20","cs21"],
     "bl_a4_2022": ["cs1","cs2","cs3","cs4","cs20","cs21","cs22","cs23"],
 }

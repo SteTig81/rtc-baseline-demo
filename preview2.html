@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RTC Baseline History Graph</title>
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<style>
+  body { margin: 0; font-family: sans-serif; }
+  #header { height: 30px; background: #eee; padding: 5px; display: flex; align-items: center; }
+  button { margin-right: 10px; }
+  svg { border: 1px solid #ccc; }
+  rect { fill: #aad; stroke: #000; cursor: pointer; }
+  rect.mainline { fill: #faa; }
+  text { font-size: 12px; }
+  .context-menu { position: absolute; background: white; border: 1px solid #ccc; padding: 5px; display: none; }
+  .context-menu button { display: block; width: 100%; border: none; background: none; text-align: left; padding: 2px 5px; cursor: pointer; }
+  .context-menu button:hover { background: #eee; }
+</style>
+</head>
+<body>
+<div id="header">
+  <button id="resetBtn">Reset</button>
+  <button id="renderBtn">Render</button>
+</div>
+<div id="graph"></div>
+<div class="context-menu" id="contextMenu">
+  <button id="markMainline">Head of Mainline</button>
+</div>
+<script>
+const svgWidth = 2000, svgHeight = 2000;
+const rectWidth = 150, rectHeight = 60, laneSpacing = 200, verticalSpacing = 80;
+
+let nodesData = [];
+let linksData = [];
+let mainlineNodes = new Set();
+let svg, nodeGroup;
+
+// Load data
+function loadData() {
+  return d3.json("baseline_history.json").then(data => {
+    nodesData = data.nodes.map(d => ({
+      ...d,
+      mainline: false,
+      x: 0,
+      y: 0,
+      lane: 0
+    }));
+    linksData = data.links;
+  });
+}
+
+// Assign lanes (with reuse)
+function assignLanes(nodes) {
+  const lanes = [];
+  const nodeMap = new Map(nodes.map(n => [n.id, n]));
+  const childMap = new Map();
+  nodes.forEach(n => n.children = []);
+  nodes.forEach(n => {
+    n.predecessors.forEach(pid => {
+      if(!childMap.has(pid)) childMap.set(pid, []);
+      childMap.get(pid).push(n.id);
+    });
+  });
+
+  const roots = nodes.filter(n => n.predecessors.length===0)
+                     .sort((a,b)=> new Date(a.baselines[0].creation_date) - new Date(b.baselines[0].creation_date));
+
+  function assign(node, yPos) {
+    let lane = 0;
+    if(mainlineNodes.has(node.id)) lane = 0;
+    else if(node.predecessors.length>0) {
+      const predLane = nodeMap.get(node.predecessors[0]).lane;
+      lane = predLane;
+      if(lanes[lane] && lanes[lane]!==node.id) {
+        lane = lanes.findIndex(l => !l);
+        if(lane===-1) lane = lanes.length;
+      }
+    } else {
+      lane = lanes.findIndex(l => !l);
+      if(lane===-1) lane = lanes.length;
+    }
+    lanes[lane] = node.id;
+    node.lane = lane;
+    node.x = 50 + lane*laneSpacing;
+    node.y = yPos;
+
+    console.log(`Node ${node.id}: x=${node.x}, y=${node.y}, lane=${node.lane}, mainline=${node.mainline}, baselines=[${node.baselines.map(b=>b.name).join(", ")}]`);
+
+    const children = childMap.get(node.id) || [];
+    let childY = yPos + verticalSpacing;
+    children.forEach((cid,i) => {
+      assign(nodeMap.get(cid), childY);
+      childY += verticalSpacing;
+    });
+
+    if(!mainlineNodes.has(node.id)) lanes[node.lane] = null;
+  }
+
+  roots.forEach((r,i)=>assign(r, 50 + i*verticalSpacing));
+}
+
+// Draw nodes (positions unchanged)
+function drawNodes() {
+  if(!svg) {
+    svg = d3.select("#graph").append("svg")
+      .attr("width", svgWidth)
+      .attr("height", svgHeight)
+      .call(d3.zoom().on("zoom", (event)=>{ svg.attr("transform", event.transform); }))
+      .append("g");
+  }
+  if(nodeGroup) nodeGroup.selectAll("*").remove();
+  else nodeGroup = svg.append("g");
+
+  const nodeSel = nodeGroup.selectAll(".node").data(nodesData, d=>d.id);
+
+  const nodeEnter = nodeSel.enter()
+    .append("g")
+    .attr("class","node")
+    .attr("transform", d=>`translate(${d.x},${d.y})`);
+
+  nodeEnter.append("rect")
+    .attr("width", rectWidth)
+    .attr("height", rectHeight)
+    .classed("mainline", d=>d.mainline)
+    .on("contextmenu", (event,d)=>{
+      event.preventDefault();
+      showContextMenu(event.pageX, event.pageY, d);
+    });
+
+  nodeEnter.append("text")
+    .attr("x",5)
+    .attr("y",15)
+    .style("font-weight","bold")
+    .text(d=>d.id);
+
+  nodeEnter.append("text")
+    .attr("x",5)
+    .attr("y",30)
+    .selectAll("tspan")
+    .data(d=>d.baselines.map(b=>b.name))
+    .enter()
+    .append("tspan")
+    .attr("x",5)
+    .attr("dy","15")
+    .text(d=>d);
+
+  nodeSel.select("rect").classed("mainline", d=>d.mainline);
+  nodeSel.exit().remove();
+}
+
+// Draw links
+function drawLinks() {
+  if(!svg) return;
+  svg.selectAll("line").remove();
+  linksData.forEach(link=>{
+    const source = nodesData.find(n=>n.id===link.source);
+    const target = nodesData.find(n=>n.id===link.target);
+    svg.append("line")
+      .attr("x1", source.x + rectWidth/2)
+      .attr("y1", source.y + rectHeight)
+      .attr("x2", target.x + rectWidth/2)
+      .attr("y2", target.y)
+      .attr("stroke", "#000");
+  });
+}
+
+// Render graph (re-order nodes)
+function renderGraph() {
+  assignLanes(nodesData);
+  drawLinks();
+  drawNodes();
+}
+
+// Context menu
+function showContextMenu(x, y, node) {
+  const menu = document.getElementById("contextMenu");
+  menu.style.left = x + "px";
+  menu.style.top = y + "px";
+  menu.style.display = "block";
+  document.getElementById("markMainline").onclick = ()=>{
+    markMainline(node.id);
+    menu.style.display = "none";
+  };
+}
+document.addEventListener("click", ()=>{ document.getElementById("contextMenu").style.display="none"; });
+
+// Mark mainline nodes (coloring only)
+function markMainline(nodeId) {
+  const nodeMap = new Map(nodesData.map(n=>[n.id,n]));
+  mainlineNodes.clear();
+  let current = nodeMap.get(nodeId);
+  while(current) {
+    current.mainline = true;
+    mainlineNodes.add(current.id);
+    if(current.predecessors.length>0) current = nodeMap.get(current.predecessors[0]);
+    else break;
+  }
+  drawNodes(); // update coloring immediately
+}
+
+// Reset mainline
+document.getElementById("resetBtn").onclick = ()=>{
+  nodesData.forEach(n=>n.mainline=false);
+  mainlineNodes.clear();
+  drawNodes();
+};
+document.getElementById("renderBtn").onclick = renderGraph;
+
+// Initial load
+loadData().then(()=>{
+  if(!svg) {
+    svg = d3.select("#graph").append("svg")
+      .attr("width", svgWidth)
+      .attr("height", svgHeight)
+      .call(d3.zoom().on("zoom", (event)=>{ svg.attr("transform", event.transform); }))
+      .append("g");
+  }
+  assignLanes(nodesData);  // **assign positions initially**
+  drawLinks();
+  drawNodes();
+});
+</script>
+</body>
+</html>

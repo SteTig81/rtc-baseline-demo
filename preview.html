@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Baseline History Tree</title>
+
+<style>
+body { font-family: Arial, sans-serif; margin:0; padding:0; }
+header, footer { font-size: 14px; padding: 4px 8px; background: #f0f0f0; }
+
+.node rect {
+    fill: #fff;
+    stroke: #333;
+    stroke-width: 1.5px;
+}
+.node.mainline rect {
+    fill: #d8f2d8;
+}
+.node text {
+    font-size: 10px;
+    text-anchor: middle;
+    pointer-events: none;
+}
+.node text.cfg {
+    font-weight: bold;
+}
+.link {
+    fill: none;
+    stroke: #666;
+    stroke-width: 2px;
+}
+</style>
+</head>
+
+<body>
+<header>Baseline History Tree</header>
+<svg id="grid"></svg>
+<footer>Mouse wheel = zoom, drag = pan</footer>
+
+<script src="https://d3js.org/d3.v7.min.js"></script>
+<script>
+const headerH = 28;
+const footerH = 20;
+const width = window.innerWidth;
+const height = window.innerHeight - headerH - footerH;
+
+const cellW = 200;
+const cellH = 60;
+
+const svg = d3.select("#grid")
+    .attr("width", width)
+    .attr("height", height);
+
+const gZoom = svg.append("g");
+
+svg.call(
+    d3.zoom()
+        .scaleExtent([0.5, 4])
+        .on("zoom", e => gZoom.attr("transform", e.transform))
+);
+
+d3.json("baseline_history.json").then(data => {
+
+    const nodes = data.nodes;
+    const links = data.links;
+    const nodeById = new Map(nodes.map(n => [n.id, n]));
+
+    // children map
+    const children = new Map();
+    nodes.forEach(n => children.set(n.id, []));
+    links.forEach(l => children.get(l.source).push(nodeById.get(l.target)));
+
+    // classify children
+    nodes.forEach(n => {
+        n.mainlineChild = null;
+        n.sideChildren = [];
+        children.get(n.id).forEach(c => {
+            c.mainline ? n.mainlineChild = c : n.sideChildren.push(c);
+        });
+    });
+
+    // ordering helper
+    function branchOrder(a, b) {
+        if (a.root_distance !== b.root_distance)
+            return a.root_distance - b.root_distance;
+        return new Date(a.baselines[0].creation_date) -
+               new Date(b.baselines[0].creation_date);
+    }
+
+    // ---- find global mainline ----
+    const mainline = [];
+    let cur = nodes.find(n => n.mainline && n.predecessors.length === 0);
+    while (cur) {
+        mainline.push(cur);
+        cur = cur.mainlineChild;
+    }
+
+    // ---- utility: find subtree mainline (longest path) ----
+    function findSubMainline(root) {
+        let best = [];
+        function dfs(n, path) {
+            const next = path.concat(n);
+            if (!n.mainlineChild || !children.get(n.id).includes(n.mainlineChild)) {
+                if (
+                    next.length > best.length ||
+                    (next.length === best.length &&
+                     new Date(next[next.length - 1].baselines[0].creation_date) <
+                     new Date(best[best.length - 1].baselines[0].creation_date))
+                ) {
+                    best = next;
+                }
+            }
+            children.get(n.id).forEach(c => dfs(c, next));
+        }
+        dfs(root, []);
+        return best;
+    }
+
+    // ---- layout a subtree ----
+    function layoutSubtree(root, startX, startY) {
+        const subMain = findSubMainline(root);
+        let maxLane = startY;
+
+        // place sub-mainline horizontally
+        subMain.forEach((n, i) => {
+            n.gridX = startX + i;
+            n.gridY = startY;
+            maxLane = startY;
+        });
+
+        // side branches of sub-mainline
+        subMain.forEach((n, i) => {
+            let lane = startY;
+            n.sideChildren
+                .filter(c => !subMain.includes(c))
+                .sort(branchOrder)
+                .forEach(sc => {
+                    lane = layoutSubtree(sc, startX + i + 1, lane + 1);
+                    maxLane = Math.max(maxLane, lane);
+                });
+        });
+
+        return maxLane;
+    }
+
+    // ---- global layout ----
+    let currentY = 0;
+
+    mainline.forEach(m => {
+        // place mainline node
+        m.gridX = 0;
+        m.gridY = currentY;
+
+        let nextFreeLane = currentY;
+
+        // render side-branch subtrees
+        m.sideChildren
+            .slice()
+            .sort(branchOrder)
+            .forEach(sc => {
+                nextFreeLane = layoutSubtree(sc, 1, nextFreeLane);
+                nextFreeLane++;
+            });
+
+        currentY = nextFreeLane;
+    });
+
+    // ---- compute pixel positions ----
+    const originX = width / 2;
+    const originY = height - cellH;
+
+    nodes.forEach(n => {
+        n.x = originX + n.gridX * cellW;
+        n.y = originY - n.gridY * cellH;
+    });
+
+    // ---- DEBUG ----
+    console.group("Baseline layout debug");
+    nodes.forEach(n => {
+        const created = n.baselines
+            .map(b => b.creation_date)
+            .sort()[0];
+        console.log(
+            `cfg=${n.id}`,
+            `names=${n.baselines.map(b => b.name).join(", ")}`,
+            `mainline=${n.mainline}`,
+            `rootDist=${n.root_distance}`,
+            `created=${created}`,
+            `grid=(${n.gridX}, ${n.gridY})`
+        );
+    });
+    console.groupEnd();
+
+    // ---- draw links ----
+    gZoom.selectAll(".link")
+        .data(links)
+        .enter()
+        .append("path")
+        .attr("class", "link")
+        .attr("d", d => {
+            const s = nodeById.get(d.source);
+            const t = nodeById.get(d.target);
+            return `M${s.x},${s.y} L${t.x},${t.y}`;
+        });
+
+    // ---- draw nodes ----
+    const g = gZoom.selectAll(".node")
+        .data(nodes)
+        .enter()
+        .append("g")
+        .attr("class", d => `node${d.mainline ? " mainline" : ""}`)
+        .attr("transform", d => `translate(${d.x},${d.y})`);
+
+    const boxW = 120;
+    const pad = 6;
+    const lineH = 12;
+
+    g.each(function(d) {
+        const g = d3.select(this);
+        const lines = [d.id, ...d.baselines.map(b => b.name)];
+        const h = pad * 2 + lines.length * lineH;
+
+        g.append("rect")
+            .attr("x", -boxW / 2)
+            .attr("y", -h / 2)
+            .attr("width", boxW)
+            .attr("height", h)
+            .attr("rx", 4);
+
+        lines.forEach((t, i) => {
+            g.append("text")
+                .attr("class", i === 0 ? "cfg" : null)
+                .attr("y", -h / 2 + pad + (i + 1) * lineH - 4)
+                .text(t);
+        });
+    });
+});
+</script>
+</body>
+</html>
