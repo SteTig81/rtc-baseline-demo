@@ -7,8 +7,8 @@ logger = logging.getLogger(__name__)
 def build_dag_edges(nodes):
     edges = defaultdict(list)
     for a, b in combinations(nodes, 2):
-        sa = {c["id"] for c in a["changesets"]}
-        sb = {c["id"] for c in b["changesets"]}
+        sa = {c["uuid"] for c in a["changesets"]}
+        sb = {c["uuid"] for c in b["changesets"]}
         if sa < sb:
             edges[a["id"]].append(b["id"])
         elif sb < sa:

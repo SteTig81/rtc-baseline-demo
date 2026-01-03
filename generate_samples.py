@@ -38,28 +38,28 @@ def d(days):
 
 baselines = {
     "baselines": [
-        {"id": "bl1",   "name": "1.0.0",                "creation_date": d(0)},
-        {"id": "bl1r",  "name": "1.0.0-rerelease",      "creation_date": d(30)},
-        {"id": "bl2",   "name": "1.1.0",                "creation_date": d(120)},
-        {"id": "bl3a",  "name": "1.1.1-hotfix-A",       "creation_date": d(150)},
-        {"id": "bl3b",  "name": "1.1.1-hotfix-B",       "creation_date": d(160)},
-        {"id": "bl4",   "name": "2.0.0",                "creation_date": d(365)},
-        {"id": "bl5x",  "name": "2.1.0-feature-X",      "creation_date": d(420)},
-        {"id": "bl5y",  "name": "2.1.0-feature-Y",      "creation_date": d(430)},
-        {"id": "bl5z",  "name": "2.1.0-feature-Z",      "creation_date": d(440)},
-        {"id": "bl_b1", "name": "banana-1.0.0",         "creation_date": d(40)},
-        {"id": "bl_b2", "name": "banana-1.1.0",         "creation_date": d(90)},
-        {"id": "bl_b3", "name": "banana-1.2.0",         "creation_date": d(140)},
-        {"id": "bl_a1", "name": "apple-2.0.0",          "creation_date": d(380)},
-        {"id": "bl_a2", "name": "apple-2.0.1",          "creation_date": d(395)},
-        {"id": "bl_a22", "name": "apple-2.0.2",          "creation_date": d(398)},
-        {"id": "bl_a3", "name": "apple-2.1.0",          "creation_date": d(410)},
-        {"id": "bl_a4", "name": "apple-3.0.0",          "creation_date": d(470)},
-        {"id": "bl6",   "name": "2.2.0-merge",          "creation_date": d(480)},
-        {"id": "bl7",   "name": "2.2.0-rebaseline",     "creation_date": d(520)},
-        {"id": "bl8a",  "name": "2.3.0-hotfix-A",       "creation_date": d(560)},
-        {"id": "bl8b",  "name": "2.3.0-hotfix-B",       "creation_date": d(565)},
-        {"id": "bl9",   "name": "2.4.0-final-merge",    "creation_date": d(610)}
+        {"uuid": "bl1",   "name": "1.0.0",                "creation_date": d(0)},
+        {"uuid": "bl1r",  "name": "1.0.0-rerelease",      "creation_date": d(30)},
+        {"uuid": "bl2",   "name": "1.1.0",                "creation_date": d(120)},
+        {"uuid": "bl3a",  "name": "1.1.1-hotfix-A",       "creation_date": d(150)},
+        {"uuid": "bl3b",  "name": "1.1.1-hotfix-B",       "creation_date": d(160)},
+        {"uuid": "bl4",   "name": "2.0.0",                "creation_date": d(365)},
+        {"uuid": "bl5x",  "name": "2.1.0-feature-X",      "creation_date": d(420)},
+        {"uuid": "bl5y",  "name": "2.1.0-feature-Y",      "creation_date": d(430)},
+        {"uuid": "bl5z",  "name": "2.1.0-feature-Z",      "creation_date": d(440)},
+        {"uuid": "bl_b1", "name": "banana-1.0.0",         "creation_date": d(40)},
+        {"uuid": "bl_b2", "name": "banana-1.1.0",         "creation_date": d(90)},
+        {"uuid": "bl_b3", "name": "banana-1.2.0",         "creation_date": d(140)},
+        {"uuid": "bl_a1", "name": "apple-2.0.0",          "creation_date": d(380)},
+        {"uuid": "bl_a2", "name": "apple-2.0.1",          "creation_date": d(395)},
+        {"uuid": "bl_a22", "name": "apple-2.0.2",          "creation_date": d(398)},
+        {"uuid": "bl_a3", "name": "apple-2.1.0",          "creation_date": d(410)},
+        {"uuid": "bl_a4", "name": "apple-3.0.0",          "creation_date": d(470)},
+        {"uuid": "bl6",   "name": "2.2.0-merge",          "creation_date": d(480)},
+        {"uuid": "bl7",   "name": "2.2.0-rebaseline",     "creation_date": d(520)},
+        {"uuid": "bl8a",  "name": "2.3.0-hotfix-A",       "creation_date": d(560)},
+        {"uuid": "bl8b",  "name": "2.3.0-hotfix-B",       "creation_date": d(565)},
+        {"uuid": "bl9",   "name": "2.4.0-final-merge",    "creation_date": d(610)}
     ]
 }
 
@@ -99,7 +99,7 @@ cs_sets = {
 
 # Write changesets JSON files
 for name, cs in cs_sets.items():
-    write_json(f"cs_{name}.json", {"changeSets": [{"id": c, "name": c} for c in cs]})
+    write_json(f"cs_{name}.json", {"changes": [{"uuid": c, "name": c} for c in cs]})
 
 print(f"Cache updated: {len(baselines['baselines'])} baselines and {len(cs_sets)} changesets files.")
 

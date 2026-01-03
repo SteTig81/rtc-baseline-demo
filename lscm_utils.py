@@ -47,7 +47,7 @@ def list_changesets_yearly(baseline_id, start_year=2013):
         if os.path.exists(cache_file):
             with open(cache_file, "r", encoding="utf-8") as f:
                 data = json.load(f)
-                all_cs.extend(data.get("changeSets", []))
+                all_cs.extend(data.get("changes", []))
 
     if not all_cs:
         raise ValueError(f"No changesets found for baseline '{baseline_id}' from year {start_year} to {now}!")

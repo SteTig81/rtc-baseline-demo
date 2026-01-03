@@ -12,7 +12,7 @@ def build_config_nodes(baselines):
 
     for bl in baselines:
         cs_json = bl["changesets_json"]
-        cs_ids = sorted(cs["id"] for cs in cs_json)
+        cs_ids = sorted(cs["uuid"] for cs in cs_json)
         cid = cfg_id(cs_ids)
 
         if cid not in nodes:

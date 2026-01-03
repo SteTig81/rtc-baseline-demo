@@ -16,7 +16,7 @@ def main():
 
     baselines = list_baselines(args.component)
     for bl in baselines:
-        bl["changesets_json"] = list_changesets_yearly(bl["id"])
+        bl["changesets_json"] = list_changesets_yearly(bl["uuid"])
 
     nodes = build_config_nodes(baselines)
     edges = remove_transitive_edges(build_dag_edges(nodes))
