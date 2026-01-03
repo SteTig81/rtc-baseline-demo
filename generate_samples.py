@@ -63,7 +63,9 @@ baselines = {
     ]
 }
 
-write_json("baselines_MyComponent.json", baselines)
+# Write baselines as a list to match lscm output format
+# The lscm output is a JSON list with a single object containing the "baselines" key.
+write_json("baselines_MyComponent.json", [baselines])
 
 # -----------------------------
 # Changesets JSONs (keys match baseline IDs)
@@ -100,3 +102,7 @@ for name, cs in cs_sets.items():
     write_json(f"cs_{name}.json", {"changeSets": [{"id": c, "name": c} for c in cs]})
 
 print(f"Cache updated: {len(baselines['baselines'])} baselines and {len(cs_sets)} changesets files.")
+
+# Note: lscm outputs baselines as a JSON list with a single object
+#       containing the "baselines" array. We wrote the sample
+#       generator to match that format (a list containing the dict).

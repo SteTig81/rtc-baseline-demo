@@ -29,7 +29,10 @@ def run_lscm(args, cache_file=None):
 def list_baselines(component):
     cache_file = os.path.join(CACHE_DIR, f"baselines_{component}.json")
     data = run_lscm(["list", "baselines", "--component", component, "--json"], cache_file)
-    return data.get("baselines", [])
+    # data is now a list: [ { "baselines": [...] } ]
+    if isinstance(data, list) and data:
+        return data[0].get("baselines", [])
+    return []
 
 def list_changesets_yearly(baseline_id, start_year=2013):
     """
