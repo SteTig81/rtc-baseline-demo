@@ -1,15 +1,15 @@
 {
-  "changeSets": [
+  "changes": [
     {
-      "id": "cs1",
+      "uuid": "cs1",
       "name": "cs1"
     },
     {
-      "id": "cs2",
+      "uuid": "cs2",
       "name": "cs2"
     },
     {
-      "id": "cs4",
+      "uuid": "cs4",
       "name": "cs4"
     }
   ]

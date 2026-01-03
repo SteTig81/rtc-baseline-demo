@@ -1,23 +1,23 @@
 {
-  "changeSets": [
+  "changes": [
     {
-      "id": "cs1",
+      "uuid": "cs1",
       "name": "cs1"
     },
     {
-      "id": "cs2",
+      "uuid": "cs2",
       "name": "cs2"
     },
     {
-      "id": "cs10",
+      "uuid": "cs10",
       "name": "cs10"
     },
     {
-      "id": "cs11",
+      "uuid": "cs11",
       "name": "cs11"
     },
     {
-      "id": "cs12",
+      "uuid": "cs12",
       "name": "cs12"
     }
   ]

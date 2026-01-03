@@ -6,23 +6,23 @@
       "cs_count": 2,
       "baselines": [
         {
-          "id": "bl1",
+          "uuid": "bl1",
           "name": "1.0.0",
           "creation_date": "2020-01-15T10:00:00Z"
         },
         {
-          "id": "bl1r",
+          "uuid": "bl1r",
           "name": "1.0.0-rerelease",
           "creation_date": "2020-02-14T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         }
       ],
@@ -36,22 +36,22 @@
       "cs_count": 3,
       "baselines": [
         {
-          "id": "bl2",
+          "uuid": "bl2",
           "name": "1.1.0",
           "creation_date": "2020-05-14T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         }
       ],
@@ -67,27 +67,27 @@
       "cs_count": 3,
       "baselines": [
         {
-          "id": "bl3a",
+          "uuid": "bl3a",
           "name": "1.1.1-hotfix-A",
           "creation_date": "2020-06-13T10:00:00Z"
         },
         {
-          "id": "bl3b",
+          "uuid": "bl3b",
           "name": "1.1.1-hotfix-B",
           "creation_date": "2020-06-23T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         }
       ],
@@ -103,26 +103,26 @@
       "cs_count": 4,
       "baselines": [
         {
-          "id": "bl4",
+          "uuid": "bl4",
           "name": "2.0.0",
           "creation_date": "2021-01-14T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         }
       ],
@@ -139,30 +139,30 @@
       "cs_count": 5,
       "baselines": [
         {
-          "id": "bl5x",
+          "uuid": "bl5x",
           "name": "2.1.0-feature-X",
           "creation_date": "2021-03-10T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs5",
+          "uuid": "cs5",
           "name": "cs5"
         }
       ],
@@ -178,30 +178,30 @@
       "cs_count": 5,
       "baselines": [
         {
-          "id": "bl5y",
+          "uuid": "bl5y",
           "name": "2.1.0-feature-Y",
           "creation_date": "2021-03-20T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         }
       ],
@@ -217,34 +217,34 @@
       "cs_count": 6,
       "baselines": [
         {
-          "id": "bl5z",
+          "uuid": "bl5z",
           "name": "2.1.0-feature-Z",
           "creation_date": "2021-03-30T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         },
         {
-          "id": "cs6_2",
+          "uuid": "cs6_2",
           "name": "cs6_2"
         }
       ],
@@ -260,22 +260,22 @@
       "cs_count": 3,
       "baselines": [
         {
-          "id": "bl_b1",
+          "uuid": "bl_b1",
           "name": "banana-1.0.0",
           "creation_date": "2020-02-24T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs10",
+          "uuid": "cs10",
           "name": "cs10"
         }
       ],
@@ -291,26 +291,26 @@
       "cs_count": 4,
       "baselines": [
         {
-          "id": "bl_b2",
+          "uuid": "bl_b2",
           "name": "banana-1.1.0",
           "creation_date": "2020-04-14T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs10",
+          "uuid": "cs10",
           "name": "cs10"
         },
         {
-          "id": "cs11",
+          "uuid": "cs11",
           "name": "cs11"
         }
       ],
@@ -326,30 +326,30 @@
       "cs_count": 5,
       "baselines": [
         {
-          "id": "bl_b3",
+          "uuid": "bl_b3",
           "name": "banana-1.2.0",
           "creation_date": "2020-06-03T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs10",
+          "uuid": "cs10",
           "name": "cs10"
         },
         {
-          "id": "cs11",
+          "uuid": "cs11",
           "name": "cs11"
         },
         {
-          "id": "cs12",
+          "uuid": "cs12",
           "name": "cs12"
         }
       ],
@@ -365,30 +365,30 @@
       "cs_count": 5,
       "baselines": [
         {
-          "id": "bl_a1",
+          "uuid": "bl_a1",
           "name": "apple-2.0.0",
           "creation_date": "2021-01-29T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs20",
+          "uuid": "cs20",
           "name": "cs20"
         }
       ],
@@ -396,7 +396,7 @@
         "cfg_cfdb065b0387"
       ],
       "root_distance": 3,
-      "mainline": false
+      "mainline": true
     },
     {
       "id": "cfg_b5a906ca55b0",
@@ -404,34 +404,34 @@
       "cs_count": 6,
       "baselines": [
         {
-          "id": "bl_a2",
+          "uuid": "bl_a2",
           "name": "apple-2.0.1",
           "creation_date": "2021-02-13T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs20",
+          "uuid": "cs20",
           "name": "cs20"
         },
         {
-          "id": "cs23",
+          "uuid": "cs23",
           "name": "cs23"
         }
       ],
@@ -439,7 +439,54 @@
         "cfg_bac49cafefad"
       ],
       "root_distance": 4,
-      "mainline": false
+      "mainline": true
+    },
+    {
+      "id": "cfg_b74cc5dc5e32",
+      "bl_count": 1,
+      "cs_count": 7,
+      "baselines": [
+        {
+          "uuid": "bl_a22",
+          "name": "apple-2.0.2",
+          "creation_date": "2021-02-16T10:00:00Z"
+        }
+      ],
+      "changesets": [
+        {
+          "uuid": "cs1",
+          "name": "cs1"
+        },
+        {
+          "uuid": "cs2",
+          "name": "cs2"
+        },
+        {
+          "uuid": "cs3",
+          "name": "cs3"
+        },
+        {
+          "uuid": "cs4",
+          "name": "cs4"
+        },
+        {
+          "uuid": "cs20",
+          "name": "cs20"
+        },
+        {
+          "uuid": "cs23",
+          "name": "cs23"
+        },
+        {
+          "uuid": "cs22",
+          "name": "cs22"
+        }
+      ],
+      "predecessors": [
+        "cfg_b5a906ca55b0"
+      ],
+      "root_distance": 5,
+      "mainline": true
     },
     {
       "id": "cfg_69c323728514",
@@ -447,34 +494,34 @@
       "cs_count": 6,
       "baselines": [
         {
-          "id": "bl_a3",
+          "uuid": "bl_a3",
           "name": "apple-2.1.0",
           "creation_date": "2021-02-28T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs20",
+          "uuid": "cs20",
           "name": "cs20"
         },
         {
-          "id": "cs21",
+          "uuid": "cs21",
           "name": "cs21"
         }
       ],
@@ -490,51 +537,51 @@
       "cs_count": 8,
       "baselines": [
         {
-          "id": "bl_a4",
+          "uuid": "bl_a4",
           "name": "apple-3.0.0",
           "creation_date": "2021-04-29T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs20",
+          "uuid": "cs20",
           "name": "cs20"
         },
         {
-          "id": "cs21",
+          "uuid": "cs21",
           "name": "cs21"
         },
         {
-          "id": "cs22",
+          "uuid": "cs22",
           "name": "cs22"
         },
         {
-          "id": "cs23",
+          "uuid": "cs23",
           "name": "cs23"
         }
       ],
       "predecessors": [
-        "cfg_b5a906ca55b0",
+        "cfg_b74cc5dc5e32",
         "cfg_69c323728514"
       ],
-      "root_distance": 5,
-      "mainline": false
+      "root_distance": 6,
+      "mainline": true
     },
     {
       "id": "cfg_55f47aecf48c",
@@ -542,39 +589,39 @@
       "cs_count": 6,
       "baselines": [
         {
-          "id": "bl6",
+          "uuid": "bl6",
           "name": "2.2.0-merge",
           "creation_date": "2021-05-09T10:00:00Z"
         },
         {
-          "id": "bl7",
+          "uuid": "bl7",
           "name": "2.2.0-rebaseline",
           "creation_date": "2021-06-18T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs5",
+          "uuid": "cs5",
           "name": "cs5"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         }
       ],
@@ -591,38 +638,38 @@
       "cs_count": 7,
       "baselines": [
         {
-          "id": "bl8a",
+          "uuid": "bl8a",
           "name": "2.3.0-hotfix-A",
           "creation_date": "2021-07-28T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs5",
+          "uuid": "cs5",
           "name": "cs5"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         },
         {
-          "id": "cs7",
+          "uuid": "cs7",
           "name": "cs7"
         }
       ],
@@ -638,38 +685,38 @@
       "cs_count": 7,
       "baselines": [
         {
-          "id": "bl8b",
+          "uuid": "bl8b",
           "name": "2.3.0-hotfix-B",
           "creation_date": "2021-08-02T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs5",
+          "uuid": "cs5",
           "name": "cs5"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         },
         {
-          "id": "cs8",
+          "uuid": "cs8",
           "name": "cs8"
         }
       ],
@@ -685,42 +732,42 @@
       "cs_count": 8,
       "baselines": [
         {
-          "id": "bl9",
+          "uuid": "bl9",
           "name": "2.4.0-final-merge",
           "creation_date": "2021-09-16T10:00:00Z"
         }
       ],
       "changesets": [
         {
-          "id": "cs1",
+          "uuid": "cs1",
           "name": "cs1"
         },
         {
-          "id": "cs2",
+          "uuid": "cs2",
           "name": "cs2"
         },
         {
-          "id": "cs3",
+          "uuid": "cs3",
           "name": "cs3"
         },
         {
-          "id": "cs4",
+          "uuid": "cs4",
           "name": "cs4"
         },
         {
-          "id": "cs5",
+          "uuid": "cs5",
           "name": "cs5"
         },
         {
-          "id": "cs6",
+          "uuid": "cs6",
           "name": "cs6"
         },
         {
-          "id": "cs7",
+          "uuid": "cs7",
           "name": "cs7"
         },
         {
-          "id": "cs8",
+          "uuid": "cs8",
           "name": "cs8"
         }
       ],
@@ -795,6 +842,10 @@
     },
     {
       "source": "cfg_b5a906ca55b0",
+      "target": "cfg_b74cc5dc5e32"
+    },
+    {
+      "source": "cfg_b74cc5dc5e32",
       "target": "cfg_a8d3702c48f2"
     },
     {
