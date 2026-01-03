@@ -11,12 +11,13 @@ logging.basicConfig(level=logging.INFO)
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--component", required=True)
+    ap.add_argument("--server", default="rtcserver")
     ap.add_argument("--output", default="baseline_history.json")
     args = ap.parse_args()
 
-    baselines = list_baselines(args.component)
+    baselines = list_baselines(args.server, args.component)
     for bl in baselines:
-        bl["changesets_json"] = list_changesets_yearly(bl["uuid"])
+        bl["changesets_json"] = list_changesets_yearly(args.server, args.component, bl["uuid"])
 
     nodes = build_config_nodes(baselines)
     edges = remove_transitive_edges(build_dag_edges(nodes))

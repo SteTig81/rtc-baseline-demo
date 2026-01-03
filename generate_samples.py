@@ -22,11 +22,16 @@ if args.wipe_cache and os.path.exists(CACHE_DIR):
 # Create cache folder if it does not exist
 os.makedirs(CACHE_DIR, exist_ok=True)
 
+# Create component subfolder
+component = "MyComponent"
+component_dir = os.path.join(CACHE_DIR, component)
+os.makedirs(component_dir, exist_ok=True)
+
 # -----------------------------
 # Helper to write JSON
 # -----------------------------
 def write_json(filename, obj):
-    with open(os.path.join(CACHE_DIR, filename), "w", encoding="utf-8") as f:
+    with open(os.path.join(component_dir, filename), "w", encoding="utf-8") as f:
         json.dump(obj, f, indent=2)
 
 # -----------------------------
@@ -65,7 +70,7 @@ baselines = {
 
 # Write baselines as a list to match lscm output format
 # The lscm output is a JSON list with a single object containing the "baselines" key.
-write_json("baselines_MyComponent.json", [baselines])
+write_json("baselines.json", [baselines])
 
 # -----------------------------
 # Changesets JSONs (keys match baseline IDs)
